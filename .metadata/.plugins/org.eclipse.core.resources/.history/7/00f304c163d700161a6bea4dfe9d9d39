@@ -1,0 +1,10 @@
+var app = angular.module("ngCodeQs");
+
+app.component('appComponent', {
+  controller : function() {
+    var vm = this;
+  },
+  template : `
+    <ng-view></ng-view>
+  `
+});

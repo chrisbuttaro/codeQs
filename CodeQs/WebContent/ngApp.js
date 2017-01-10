@@ -1,9 +1,9 @@
 angular.module("ngCodeQs", ['ngRoute'])
 .config(function($routeProvider){
 	$routeProvider
-//    .when('/',{
-//    	template: '<form-component></form-component>'
-//    })
+    .when('/',{
+    	template: '<login-component></login-component>'
+    })
 //    .when('/table',{
 //    	template: '<todos-component></todos-component>'
 //    })
@@ -26,7 +26,7 @@ angular.module("ngCodeQs", ['ngRoute'])
 //         }
     
     	
-//    })
+//   })
 //    .when('/about',{
 //    	templateUrl: 'app_client/views/about.html'
 //    })

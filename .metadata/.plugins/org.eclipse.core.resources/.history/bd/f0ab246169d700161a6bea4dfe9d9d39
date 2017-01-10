@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html ng-app="ngCodeQs">
+<head>
+  <title>CodeQs</title>
+  <!-- AngularJS -->
+  <script src="js/vendor/angular.min.js"></script>
+  <script src="js/vendor/angular-route.min.js"></script>
+  <!-- The module file -->
+  <script src="ngApp.js"></script>
+  <!-- components -->
+  <script src="app_client/components/loginComponent.js"></script>
+  <!-- filters -->
+  <!-- services -->
+  
+
+</head>
+<body ng-view>
+ {{"hello angular"}}
+ 
+</body>
+</html>

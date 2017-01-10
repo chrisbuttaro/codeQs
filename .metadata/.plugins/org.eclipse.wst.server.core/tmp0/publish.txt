@@ -1,4 +1,4 @@
 #Tomcat publish data
-#Tue Jan 10 09:40:53 MST 2017
+#Tue Jan 10 12:17:18 MST 2017
 org.eclipse.jst.jee.server\:/binary\:/Users/christopher/.m2/repository/org/springframework/spring-web/4.3.2.RELEASE/spring-web-4.3.2.RELEASE.jar=WEB-INF/lib/spring-web-4.3.2.RELEASE.jar
 org.eclipse.jst.j2ee.server\:CodeQJPA=WEB-INF/lib/CodeQJPA.jar
