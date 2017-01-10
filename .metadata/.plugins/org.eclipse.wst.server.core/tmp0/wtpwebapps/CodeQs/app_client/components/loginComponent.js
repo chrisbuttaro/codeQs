@@ -1,7 +1,7 @@
 var app = angular.module("ngCodeQs");
 
 app.component('loginComponent', {
-  controller : function() {
+  controller : function($location) {
     var vm = this;
   
     },
@@ -18,7 +18,7 @@ app.component('loginComponent', {
   
     <div class="form-group">
         <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-        <span class="pull-right"><a href="#">New Registration</a></span>
+        <span class="pull-right"><a href="#!/register">New Registration</a></span>
     </div>
 </form>`
    
