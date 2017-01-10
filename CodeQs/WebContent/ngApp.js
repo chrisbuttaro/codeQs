@@ -7,9 +7,18 @@ angular.module("ngCodeQs", ['ngRoute'])
     .when('/register',{
     	template: '<registration-component></registration-component>'
     })
-//    .when('/todos',{
-//    	template: '<todo-detail></todo-detail>'
-//    })
+    .when('/category',{
+    	template: '<category-component></category-component>'
+    })
+    .when('/results',{
+    	template: '<results-component></results-component>'
+    })
+    .when('/profile',{
+    	template: '<profile-component></profile-component>'
+    })
+    .when('/wrongList',{
+    	template: '<wrongList-component></wrongList-component>'
+    })
 //    .when('/todos/:id',{
 //    	 template : '<todo-detail todo=$resolve.myData></todo-detail>',
 //         resolve : {
