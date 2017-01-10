@@ -17,7 +17,7 @@ angular.module("ngCodeQs", ['ngRoute'])
     	template: '<profile-component></profile-component>'
     })
     .when('/wrongList',{
-    	template: '<wrongList-component></wrongList-component>'
+    	template: '<wrong-list-component></wrong-list-component>'
     })
 //    .when('/todos/:id',{
 //    	 template : '<todo-detail todo=$resolve.myData></todo-detail>',

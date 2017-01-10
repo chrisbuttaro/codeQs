@@ -1,7 +1,7 @@
 var app = angular.module("ngCodeQs");
 
 app.component('loginComponent', {
-  controller : function($location) {
+  controller : function() {
     var vm = this;
   
     },

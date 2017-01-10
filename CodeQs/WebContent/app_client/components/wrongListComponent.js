@@ -1,6 +1,6 @@
 var app = angular.module("ngCodeQs");
 
-app.component('quizComponent', {
+app.component('wrongListComponent', {
 
   template : `
     <h1>WrongList Component</h1>
