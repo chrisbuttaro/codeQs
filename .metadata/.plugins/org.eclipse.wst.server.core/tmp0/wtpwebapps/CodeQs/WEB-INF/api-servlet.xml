@@ -20,13 +20,13 @@
    <!-- <bean id="UserDAO" class="com.data.UserDAO" /> -->
    
    <!-- Inject bCrypt Bean -->
-  <bean id="bCryptPasswordEncoder"
+<!--   <bean id="bCryptPasswordEncoder"
     class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
-  <!-- Inject SecretKeyGenerator Bean -->
+  Inject SecretKeyGenerator Bean
   <bean id="secretKeyGenerator" class="security.SecretKeyGenerator" />
 
-  <!-- Inject JsonWebTokenGenerator Bean (To be created) -->
+  Inject JsonWebTokenGenerator Bean (To be created)
   <bean id="jsonWebTokenGenerator" class="security.JsonWebTokenGenerator" />
   
   <mvc:interceptors>
@@ -34,12 +34,12 @@
     <mvc:mapping path="/questions/**" />
     <bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
   </mvc:interceptor>
-</mvc:interceptors>
+</mvc:interceptors> -->
    
 
  <bean id="myEntityManagerFactory"
         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="Todo" />
+       <property name="persistenceUnitName" value="CodeQJPA" />
     </bean>
 
     <bean id="myTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

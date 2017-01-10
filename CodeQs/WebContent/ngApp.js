@@ -1,4 +1,4 @@
-angular.module("codeQs", ['ngRoute'])
+angular.module("ngCodeQs", ['ngRoute'])
 .config(function($routeProvider){
 	$routeProvider
 //    .when('/',{
