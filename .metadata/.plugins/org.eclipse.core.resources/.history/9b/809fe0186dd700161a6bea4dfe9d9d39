@@ -6,9 +6,7 @@ app.component('loginComponent', {
   
     },
     
-    template: `<h1>CodeQs</h1>
-    <br>
-    <form class="col-md-12">
+    template: `<form class="col-md-12">
     <div class="form-group">
         <input type="text" class="form-control input-lg" placeholder="Username">
     </div>
@@ -18,6 +16,7 @@ app.component('loginComponent', {
   
     <div class="form-group">
         <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+        <span><a href="#">Need help?</a></span>
         <span class="pull-right"><a href="#">New Registration</a></span>
     </div>
 </form>`
