@@ -4,8 +4,8 @@ angular.module("ngCodeQs", ['ngRoute'])
     .when('/',{
     	template: '<login-component></login-component>'
     })
-//    .when('/register',{
-//    	template: '<registration-component></registration-component>'
+//    .when('/table',{
+//    	template: '<todos-component></todos-component>'
 //    })
 //    .when('/todos',{
 //    	template: '<todo-detail></todo-detail>'
