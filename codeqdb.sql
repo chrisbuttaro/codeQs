@@ -114,7 +114,7 @@ CREATE TABLE `test` (
   KEY `test_user_fk` (`user_id`),
   CONSTRAINT `test_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `test_user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +123,7 @@ CREATE TABLE `test` (
 
 LOCK TABLES `test` WRITE;
 /*!40000 ALTER TABLE `test` DISABLE KEYS */;
+INSERT INTO `test` VALUES (1,1);
 /*!40000 ALTER TABLE `test` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,7 +146,7 @@ CREATE TABLE `test_question` (
   CONSTRAINT `test_question_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`),
   CONSTRAINT `test_question_ibfk_2` FOREIGN KEY (`test_id`) REFERENCES `test` (`id`),
   CONSTRAINT `test_testquestion_fk` FOREIGN KEY (`test_id`) REFERENCES `test` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,6 +155,7 @@ CREATE TABLE `test_question` (
 
 LOCK TABLES `test_question` WRITE;
 /*!40000 ALTER TABLE `test_question` DISABLE KEYS */;
+INSERT INTO `test_question` VALUES (1,1,1,0),(2,1,2,0),(3,1,3,0),(4,1,4,0),(5,1,5,0),(6,1,6,1),(7,1,7,1),(8,1,8,1),(9,1,9,1),(10,1,10,1);
 /*!40000 ALTER TABLE `test_question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +171,7 @@ CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -178,7 +180,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'user1','$2a$10$qEKfw/OuPg/SAMNQvJHVA.ch0TV26zWEg5s2.MPNVgCjhFvALQ6xu'),(2,'user2','$2a$10$1pZakLf/OYuW6s0Pk1cb2eVt/mOjLxyNQP3fo4GLry9nmALkeG2pC');
+INSERT INTO `user` VALUES (1,'user1','user1'),(2,'user5','$2a$10$uN28hSWkqhweM/xvFKf18eWM4H5pOr/gD8G9ODpTIfRNeAPusQG/a'),(3,'user6','$2a$10$qEKfw/OuPg/SAMNQvJHVA.ch0TV26zWEg5s2.MPNVgCjhFvALQ6xu');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -191,4 +193,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-11 11:10:28
+-- Dump completed on 2017-01-11 14:28:31
