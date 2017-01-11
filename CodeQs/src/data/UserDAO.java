@@ -62,14 +62,11 @@ public class UserDAO {
 	    User u = em.createQuery("SELECT u FROM User u where username = :username", User.class)
 	        .setParameter("username", user.getUsername())
 	        .getSingleResult();
-	    // One-way encrypt the provided password, see if the result matches the persisted password value
-	    //if (passwordEncoder.matches(user.getPassword(), u.getPassword())) {
-	      //return u;
-	   // }
-	    System.out.println("u "+u.getPassword()+ "user "+ user.getPassword());
-	    if(user.getPassword().equals(u.getPassword())){
-	    	return u; 
+	     //One-way encrypt the provided password, see if the result matches the persisted password value
+	    if (passwordEncoder.matches(user.getPassword(), u.getPassword())) {
+	      return u;
 	    }
+
 	    return null;
 	  }
 

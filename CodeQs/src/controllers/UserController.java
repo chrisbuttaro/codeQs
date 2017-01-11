@@ -32,7 +32,6 @@ public class UserController {
 
 	 @RequestMapping(path = "/unauthorized")
 	 public void unauth(HttpServletResponse res) {
-		 System.out.println("Herererererere");
 		 res.setStatus(403);
 		 return;
 	 }
@@ -46,9 +45,7 @@ public class UserController {
 	    // Parse user from JSON
 	    try {
 	      user = mapper.readValue(userJsonString, User.class);
-	      System.out.println(userJsonString);
 	    } catch (Exception e) {
-	    	System.out.println("in first catch");
 	      e.printStackTrace();
 	      res.setStatus(422);
 	    }

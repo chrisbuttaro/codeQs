@@ -13,7 +13,6 @@ angular.module('ngCodeQs')
 
     // Contact the server, authenticate user credentials
     service.login = function(user) {
-    	 console.log("in auth service user= "+user);
       return $http({
     	  method:"POST",
     	  url:'api/login',
@@ -29,6 +28,24 @@ angular.module('ngCodeQs')
                 
               })
     };
+    
+    service.create = function(user) {
+    	console.log('in create');
+        return $http({
+      	  method:"POST",
+      	  url:'api/signup',
+      	  data: user,
+      	  headers:{
+      		  "Content-type": "application/json"
+      	  }
+      	  })
+                .then(function(response){
+              	  console.log(response)
+                  service.saveToken(response.data.jwt);
+                  $location.path('/category') 
+                  
+                })
+      };
 
     // Remove JWT from local storage
     service.logout = function() {
