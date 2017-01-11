@@ -31,7 +31,7 @@ CREATE TABLE `answer` (
   KEY `question_answer_fk` (`question_id`),
   CONSTRAINT `answer_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`),
   CONSTRAINT `question_answer_fk` FOREIGN KEY (`question_id`) REFERENCES `question` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `answer` (
 
 LOCK TABLES `answer` WRITE;
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
+INSERT INTO `answer` VALUES (1,10,'If a class have multiple methods by same name but different parameters, it is known as Method Overloading. It increases the readability of the program',1),(2,10,'Creating more than one method with different unique identifiers in a Class',0),(3,9,'It is a keyword that refers to the immediate parent class object.',1),(4,9,'It is a keyword that refers to the no argument constructor.',0),(5,8,'Inheritance is a mechanism in which one object acquires all the properties and behaviour of another object of another class. It represents IS-A relationship. It is used for Code Resusability and Method Overriding.',1),(8,7,'Static variable is used to refer the common property of all objects (that is not unique for each object) e.g. company name of employees,college name of students etc.',1),(10,6,'In case of static binding type of object is determined at compile time whereas in dynamic binding type of object is determined at runtime.',1),(11,5,'If you make any variable as final, you cannot change the value of final variable(It will be constant)',1),(12,4,'Constructor is just like a method that is used to initialize the state of an object. It is invoked at the time of object creation.',1),(13,3,'Object based programming languages follow all the features of OOPs except they are untyped languages.',0),(14,2,'A singleton is an array with only one value.',0),(15,1,'An abstract class must implement an interface, not the other way around.',0),(16,1,'Abstract class can extend only one class or one abstract class at a time, an Interface can extend any number of interfaces at a time. (Change question to What is one difference between an interface and an abstract class)',1),(17,3,'Object based programming languages follow all the features of OOPs except Inheritance.',1),(19,2,'An object that exists as only one instance in the java virtual machine.',1),(20,4,'The Constructor defines the object so that the JVM can provide a boolean',0),(21,5,'If you make a variable final, then it won\'t be included in your constructor.',0),(22,6,'Dynamic binding is determined at compile and will throw a null pointer error, whereas Static binding is at runtime and won\'t present any errors',0),(23,7,'A Static variable is not able to be passed into methods.',0),(24,8,'Inheritance allocates the class variables that are passed into various methods.',0);
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -54,7 +55,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,6 +64,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
+INSERT INTO `category` VALUES (1,'java'),(2,'Java Script');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +87,7 @@ CREATE TABLE `question` (
   CONSTRAINT `question_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
   CONSTRAINT `question_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `user_question_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +96,7 @@ CREATE TABLE `question` (
 
 LOCK TABLES `question` WRITE;
 /*!40000 ALTER TABLE `question` DISABLE KEYS */;
+INSERT INTO `question` VALUES (1,'What is the difference between an abstract class and an interface',1,1),(2,'What is a singleton?',1,1),(3,'What is difference between object oriented programming language and object based programming language?',1,1),(4,'What is constructor?',1,1),(5,'What is final variable?',1,1),(6,'What is the difference between static binding and dynamic binding?',1,1),(7,'What is static variable?',1,1),(8,'What is Inheritance?',1,1),(9,'What is super in java?',1,1),(10,' What is method overloading?',1,1);
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-01-10 14:27:58
+-- Dump completed on 2017-01-11 10:43:54
