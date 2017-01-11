@@ -9,9 +9,11 @@ angular.module("ngCodeQs", ['ngRoute'])
     })
     .when('/category',{
     	template: '<category-component></category-component>'
-    })
-    .when('/results',{
+    }).when('/results',{
     	template: '<results-component></results-component>'
+    })
+    .when('/test',{
+    	template: '<test-component></test-component>'
     })
     .when('/profile',{
     	template: '<profile-component></profile-component>'

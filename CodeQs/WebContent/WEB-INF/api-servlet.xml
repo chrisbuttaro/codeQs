@@ -18,6 +18,7 @@
     
    
    <bean id="UserDAO" class="data.UserDAO" /> 
+   <bean id="TestDAO" class="data.TestDAO" /> 
    
    <!-- Inject bCrypt Bean -->
   <bean id="bCryptPasswordEncoder"
