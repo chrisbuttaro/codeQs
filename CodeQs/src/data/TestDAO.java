@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import entities.Question;
 import entities.Exam;
-import entities.TestQuestion;
+import entities.ExamQuestion;
 @Transactional
 public class TestDAO {
 	@PersistenceContext//includes jpa's entity manager
@@ -16,7 +16,7 @@ public class TestDAO {
 	public Exam create(Exam test) {
 		for(int i=1; i<11; i++){
 			Question q=em.createQuery("SELECT q FROM Question q where q.id ="+i, Question.class).getSingleResult();
-			TestQuestion tq=new TestQuestion(test.getId(), q.getId(), false); 
+			ExamQuestion tq=new ExamQuestion(test.getId(), q.getId(), false); 
 			em.persist(tq);
 			em.flush(); 
 		}

@@ -26,10 +26,8 @@ public class CategoryTest {
 
 	@Test
 	public void test() {
-		Question q = em.find(Question.class, 2);
-		assertEquals("What is a singleton?", q.getQuestion());
-		assertEquals("java", q.getCategory().getName());
-		assertEquals("user1", q.getUser().getUsername());
+		Category c = em.find(Category.class, 2);
+		assertEquals("Java Script", c.getName());
 	}
 
 	@After

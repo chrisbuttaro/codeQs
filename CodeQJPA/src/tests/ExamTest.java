@@ -27,6 +27,7 @@ public class ExamTest {
 	public void test() {
 		Exam e = em.find(Exam.class, 1);
 		assertEquals(1, e.getUser().getId());
+		assertEquals(1, e.getQuestions().get(0).getId());
 	}
 
 	@After

@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Category;
+import entities.Question;
 
 public class QuestionTest {
 
@@ -25,8 +26,10 @@ public class QuestionTest {
 
 	@Test
 	public void test() {
-		Category c = em.find(Category.class, 1);
-		assertEquals("java", c.getName());
+		Question q = em.find(Question.class, 2);
+		assertEquals("What is a singleton?", q.getQuestion());
+		assertEquals("java", q.getCategory().getName());
+		assertEquals("user1", q.getUser().getUsername());
 	}
 
 	@After
