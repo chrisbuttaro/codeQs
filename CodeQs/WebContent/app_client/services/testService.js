@@ -1,7 +1,7 @@
 angular.module('ngCodeQs')
 .factory('authenticationService', function($http){
 	
-	service.create = function(id) {
+	service.createTest = function(user) {
         return $http({
       	  method:"POST",
       	  url:'api/createTest',
