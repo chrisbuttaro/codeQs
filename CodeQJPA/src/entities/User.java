@@ -1,9 +1,12 @@
 package entities;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,9 +17,21 @@ public class User {
 	private int id;
 	private String username;
 	private String password;
+	@OneToMany(mappedBy="user")
+	private List<Exam> exams;
 	
 	
 	public User() {}
+	
+	public List<Exam> getExams() {
+		return exams;
+	}
+
+	public void setExams(List<Exam> exams) {
+		this.exams = exams;
+	}
+
+
 
 
 	public User(int id, String username, String password) {

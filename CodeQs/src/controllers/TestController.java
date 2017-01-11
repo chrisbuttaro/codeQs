@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.TestDAO;
-import entities.Test;
+import entities.Exam;
 import entities.User;
 @RestController
 @Transactional
@@ -25,13 +25,13 @@ public class TestController {
 	private TestDAO testDAO;
 
 	  @RequestMapping(value = "/createTest", method = RequestMethod.POST)
-	  public Test create(HttpServletRequest req, HttpServletResponse res, @RequestBody String testJsonString) {
+	  public Exam create(HttpServletRequest req, HttpServletResponse res, @RequestBody String testJsonString) {
 			
 		    ObjectMapper mapper = new ObjectMapper();
-		    Test test = null;
+		    Exam test = null;
 		    // Parse user from JSON
 		    try {
-		      test = mapper.readValue(testJsonString, Test.class);
+		      test = mapper.readValue(testJsonString, Exam.class);
 		      test = testDAO.create(test);
 		    } catch (Exception e) {
 		      e.printStackTrace();
