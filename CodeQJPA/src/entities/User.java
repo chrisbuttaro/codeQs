@@ -19,8 +19,18 @@ public class User {
 	private String password;
 	@OneToMany(mappedBy="user")
 	private List<Exam> exams;
+	@OneToMany(mappedBy="user")
+	private List<Question> questions;
 	
 	
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
 	public User() {}
 	
 	public List<Exam> getExams() {
