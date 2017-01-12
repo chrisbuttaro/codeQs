@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +26,16 @@ public class Exam {
 	@ManyToMany
 	@JoinTable(name = "test_question", joinColumns = @JoinColumn(name = "test_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private List<Question> questions;
+	@OneToMany(mappedBy="exam")
+	private List <ExamQuestion> examQuestion;
+
+	public List<ExamQuestion> getExamQuestion() {
+		return examQuestion;
+	}
+
+	public void setExamQuestion(List<ExamQuestion> examQuestion) {
+		this.examQuestion = examQuestion;
+	}
 
 	public void addQuestion(Question question) {
 		if (questions == null) {
