@@ -9,10 +9,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 //entity
 @Entity
 @Table(name = "test_question")
 public class ExamQuestion {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	// exam mapping
+	@ManyToOne
+	@JoinColumn(name="test_id")
+	private Exam exam;
+	
+	// question mapping
+	@JsonBackReference(value="q_eq")
+	@ManyToOne
+	@JoinColumn(name="question_id")
+	private Question question;
+	
+	@Column(name="is_right")
+	private boolean isRight;
+
 	public Exam getExam() {
 		return exam;
 	}
@@ -29,22 +49,6 @@ public class ExamQuestion {
 		this.question = question;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
-	// exam mapping
-	@ManyToOne
-	@JoinColumn(name="test_id")
-	private Exam exam;
-	
-	// question mapping
-	@ManyToOne
-	@JoinColumn(name="question_id")
-	private Question question;
-	
-	@Column(name="is_right")
-	private boolean isRight;
 
 	public ExamQuestion() {
 	}
@@ -60,5 +64,5 @@ public class ExamQuestion {
 	public int getId() {
 		return id;
 	};
-
+	
 }
