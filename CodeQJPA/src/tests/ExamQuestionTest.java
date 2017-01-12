@@ -25,8 +25,10 @@ public class ExamQuestionTest {
 
 	@Test
 	public void test() {
-		ExamQuestion eq = em.find(ExamQuestion.class, 6);
-		assertEquals(true, eq.isRight());
+		ExamQuestion eq = em.find(ExamQuestion.class, 1);
+		assertEquals(false, eq.isRight());
+		assertEquals(2, eq.getExam().getQuestions().get(1).getId());
+		assertEquals(1, eq.getQuestion().getId());
 	}
 
 	@After

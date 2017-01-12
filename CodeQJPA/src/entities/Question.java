@@ -24,6 +24,27 @@ public class Question {
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+	public List<ExamQuestion> getExamQuestion() {
+		return examQuestion;
+	}
+
+	public void setExamQuestion(List<ExamQuestion> examQuestion) {
+		this.examQuestion = examQuestion;
+	}
+
+	@OneToMany(mappedBy = "question")
+	private List<Answer> answers;
+	@ManyToMany(mappedBy = "questions")
+	private List<Exam> exams;
+	@OneToMany(mappedBy="exam")
+	private List <ExamQuestion> examQuestion;
+	
+	
+	
+	
 	public List<Exam> getExams() {
 		return exams;
 	}
@@ -32,13 +53,6 @@ public class Question {
 		this.exams = exams;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-	@OneToMany(mappedBy = "question")
-	private List<Answer> answers;
-	@ManyToMany(mappedBy = "questions")
-	private List<Exam> exams;
 
 	public void addExam(Exam exam) {
 		if (exams == null) {
