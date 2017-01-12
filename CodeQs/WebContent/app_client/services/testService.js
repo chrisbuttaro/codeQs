@@ -1,22 +1,17 @@
-angular.module('ngCodeQs')
-.factory('authenticationService', function($http){
+angular.module('ngCodeQs').factory('testService', function($http, $location) {
+	var service = {};
 	
-	service.createTest = function(user) {
-        return $http({
-      	  method:"POST",
-      	  url:'api/createTest',
-      	  data: user,
-      	  headers:{
-      		  "Content-type": "application/json"
-      	  }
-      	  })
-                .then(function(response){
-              	  console.log(response)
-                  service.saveToken(response.data.jwt);
-                  $location.path('/category') 
-                  
-                })
-      };
-	
-    return service; 
+	service.createTest = function() {
+		return $http({
+			method : "GET",
+			url : 'api/createTest'
+		})
+		.then(function(response) {
+			console.log(response)
+			$location.path('/test')
+
+		})
+	};
+
+	return service;
 });

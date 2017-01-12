@@ -3,6 +3,7 @@ package entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +17,7 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	@OneToMany(mappedBy="category")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
 	private List<Question> questions;
 	
 	public List<Question> getQuestions() {
