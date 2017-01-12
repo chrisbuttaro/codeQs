@@ -14,21 +14,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "test")
 public class Exam {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "test_question", joinColumns = @JoinColumn(name = "test_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private List<Question> questions;
+	
+	@JsonIgnore
 	@OneToMany(mappedBy="exam")
 	private List <ExamQuestion> examQuestion;
 
+	
+	
 	public List<ExamQuestion> getExamQuestion() {
 		return examQuestion;
 	}

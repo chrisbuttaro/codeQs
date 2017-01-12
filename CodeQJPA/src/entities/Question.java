@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "question")
 public class Question {
@@ -21,29 +27,40 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String question;
+	
+	@JsonBackReference("question-category")
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
+	
+	@JsonBackReference("question-user")
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	public List<ExamQuestion> getExamQuestion() {
 		return examQuestion;
 	}
-
+	
+	@JsonManagedReference("question-answer")
+	@OneToMany(mappedBy = "question")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Answer> answers;
+	
+	@JsonIgnore
+	@ManyToMany(mappedBy = "questions")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Exam> exams;
+	
+	@JsonManagedReference(value="q_eq")
+	@OneToMany(mappedBy = "question")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<ExamQuestion> examQuestion;
+	
+	
+	
 	public void setExamQuestion(List<ExamQuestion> examQuestion) {
 		this.examQuestion = examQuestion;
 	}
-
-	@OneToMany(mappedBy = "question")
-	private List<Answer> answers;
-	@ManyToMany(mappedBy = "questions")
-	private List<Exam> exams;
-	@OneToMany(mappedBy="exam")
-	private List <ExamQuestion> examQuestion;
-	
-	
-	
 	
 	public List<Exam> getExams() {
 		return exams;
@@ -106,4 +123,6 @@ public class Question {
 	public int getId() {
 		return id;
 	}
+	
+	
 }

@@ -10,16 +10,20 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="category")
+
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
+	@JsonManagedReference("question-category")
 	private List<Question> questions;
-	
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -31,7 +35,6 @@ public class Category {
 	public Category() {};
 	
 	public Category(int id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}
