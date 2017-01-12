@@ -9,16 +9,23 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name="answer")
 public class Answer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@JsonBackReference("question-answer")
 	@ManyToOne
 	@JoinColumn(name="question_id")
 	private Question question;
+	
 	private String answer;
+
 	@Column(name="is_correct")
 	private Boolean isCorrect;
 	

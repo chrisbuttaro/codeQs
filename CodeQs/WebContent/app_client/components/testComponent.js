@@ -24,7 +24,7 @@ app.component('testComponent', {
         <th>Question</th>
       </tr>
       <tr ng-repeat="question in $ctrl.data">
-        <td>{{question}}</td>
+        <td>{{question.question}}</td>
       </tr>
     </table>
   `

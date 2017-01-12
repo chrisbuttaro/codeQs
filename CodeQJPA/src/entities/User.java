@@ -3,11 +3,15 @@ package entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="user")
@@ -15,13 +19,18 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	private String username;
+	
 	private String password;
-	@OneToMany(mappedBy="user")
+	
+	@JsonIgnore
+	@OneToMany( fetch = FetchType.EAGER,mappedBy="user")
 	private List<Exam> exams;
+	
+	@JsonManagedReference("question-user")
 	@OneToMany(mappedBy="user")
 	private List<Question> questions;
-	
 	
 	public List<Question> getQuestions() {
 		return questions;
@@ -40,9 +49,6 @@ public class User {
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
 	}
-
-
-
 
 	public User(int id, String username, String password) {
 		this.id = id;
