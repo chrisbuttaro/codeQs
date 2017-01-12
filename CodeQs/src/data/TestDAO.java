@@ -1,28 +1,25 @@
 package data;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.Question;
 import entities.Exam;
 import entities.ExamQuestion;
+import entities.Question;
 @Transactional
 public class TestDAO {
 	@PersistenceContext//includes jpa's entity manager
     private EntityManager em;
 	
-	public Exam create(Exam test) {
-		for(int i=1; i<11; i++){
-			Question q=em.createQuery("SELECT q FROM Question q where q.id ="+i, Question.class).getSingleResult();
-			ExamQuestion tq=new ExamQuestion(test.getId(), q.getId(), false); 
-			em.persist(tq);
-			em.flush(); 
+	public List createExamQs() {
+			List<String> questions=em.createQuery("SELECT q.question FROM Question q")
+					.setMaxResults(10).getResultList();
+			return questions;
 		}
-	    em.persist(test);
-	    em.flush();
-	    return test;
+			
+	   
 	  }
-
-}

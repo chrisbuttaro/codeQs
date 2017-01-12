@@ -1,6 +1,5 @@
 package controllers;
-
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import data.TestDAO;
 import entities.Exam;
-import entities.User;
+import entities.Question;
 @RestController
 @Transactional
 public class TestController {
@@ -24,19 +23,8 @@ public class TestController {
 	@Autowired
 	private TestDAO testDAO;
 
-	  @RequestMapping(value = "/createTest", method = RequestMethod.POST)
-	  public Exam create(HttpServletRequest req, HttpServletResponse res, @RequestBody String testJsonString) {
-			
-		    ObjectMapper mapper = new ObjectMapper();
-		    Exam test = null;
-		    // Parse user from JSON
-		    try {
-		      test = mapper.readValue(testJsonString, Exam.class);
-		      test = testDAO.create(test);
-		    } catch (Exception e) {
-		      e.printStackTrace();
-		      res.setStatus(422);
-		    }
-		    return test;
+	  @RequestMapping(value = "/Questions", method = RequestMethod.GET)
+	  public List createQlist(HttpServletRequest req, HttpServletResponse res) {
+		 return testDAO.createExamQs();
 	    }
 }
