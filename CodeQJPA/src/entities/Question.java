@@ -31,9 +31,6 @@ public class Question {
 		return examQuestion;
 	}
 
-	public void setExamQuestion(List<ExamQuestion> examQuestion) {
-		this.examQuestion = examQuestion;
-	}
 
 	@OneToMany(mappedBy = "question")
 	private List<Answer> answers;
@@ -44,6 +41,9 @@ public class Question {
 	
 	
 	
+	public void setExamQuestion(List<ExamQuestion> examQuestion) {
+		this.examQuestion = examQuestion;
+	}
 	
 	public List<Exam> getExams() {
 		return exams;
