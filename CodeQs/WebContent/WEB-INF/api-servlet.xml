@@ -34,8 +34,7 @@
     <mvc:mapping path="/questions/**" />
     <bean id="DataSecurityInterceptor" class="security.DataSecurityInterceptor" />
   </mvc:interceptor>
-</mvc:interceptors> 
-   
+</mvc:interceptors>  
 
  <bean id="myEntityManagerFactory"
         class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
