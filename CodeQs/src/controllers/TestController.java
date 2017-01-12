@@ -23,7 +23,7 @@ public class TestController {
 	@Autowired
 	private TestDAO testDAO;
 
-	  @RequestMapping(value = "/createTest", method = RequestMethod.GET)
+	  @RequestMapping(value = "/Questions", method = RequestMethod.GET)
 	  public List createQlist(HttpServletRequest req, HttpServletResponse res) {
 		 return testDAO.createExamQs();
 	    }
