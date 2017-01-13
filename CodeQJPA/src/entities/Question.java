@@ -1,6 +1,5 @@
 package entities;
 
-import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +16,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 @Table(name = "question")
 public class Question {
 	@Id
@@ -29,29 +28,29 @@ public class Question {
 	private int id;
 	private String question;
 
-	@JsonBackReference("question-category")
+	//@JsonBackReference("question-category")
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
 
-	@JsonManagedReference("question-user")
+	//@JsonManagedReference("question-user")
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
 	
-	@JsonManagedReference("question-answer")
+	//@JsonManagedReference("question-answer")
 	@OneToMany(mappedBy = "question")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Answer> answers;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	@ManyToMany(mappedBy = "questions")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Exam> exams;
 	
-	@JsonManagedReference(value="q_eq")
+	//@JsonManagedReference(value="q_eq")
 	@OneToMany(mappedBy = "question")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ExamQuestion> examQuestion;
