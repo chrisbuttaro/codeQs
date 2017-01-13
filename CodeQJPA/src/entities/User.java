@@ -18,9 +18,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="user")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class User {
 	@Id
-	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
@@ -37,6 +37,8 @@ public class User {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Question> questions;
 	
+	public User() {}
+	
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -45,7 +47,6 @@ public class User {
 		this.questions = questions;
 	}
 
-	public User() {}
 	
 	public List<Exam> getExams() {
 		return exams;

@@ -15,16 +15,18 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="category")
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Category {
 	@Id
-	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
 	//@JsonManagedReference("question-category")
 	private List<Question> questions;
+	
+	public Category() {};
+	
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -33,7 +35,6 @@ public class Category {
 		this.questions = questions;
 	}
 
-	public Category() {};
 	
 	public Category(int id, String name) {
 		this.id = id;

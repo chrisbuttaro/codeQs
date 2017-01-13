@@ -17,6 +17,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -45,7 +46,7 @@ public class Question {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Answer> answers;
 	
-	//@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(mappedBy = "questions")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Exam> exams;

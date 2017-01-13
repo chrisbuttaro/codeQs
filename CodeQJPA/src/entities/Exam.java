@@ -16,31 +16,29 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "test")
 public class Exam {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
 	private int id;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "test_question", joinColumns = @JoinColumn(name = "test_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private List<Question> questions;
 	
-	//@JsonIgnore
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="exam")
 	private List <ExamQuestion> examQuestion;
 
-	
+	public Exam() {
+	}
 	
 	public List<ExamQuestion> getExamQuestion() {
 		return examQuestion;
@@ -73,9 +71,6 @@ public class Exam {
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
-	}
-
-	public Exam() {
 	}
 
 	public User getUser() {

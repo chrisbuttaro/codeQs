@@ -14,9 +14,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="answer")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Answer {
 	@Id
-	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
@@ -29,6 +29,8 @@ public class Answer {
 
 	@Column(name="is_correct")
 	private Boolean isCorrect;
+	
+	public Answer() {};
 	
 	public Question getQuestion() {
 		return question;
