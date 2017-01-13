@@ -4,7 +4,7 @@ angular.module('ngCodeQs').factory('testService', function($http, $location) {
 	service.getQuestionsByCategory = function() {
 		return $http({
 			method : "GET",
-			url : 'api/category/1/questions'
+			url : 'api/category/{id}/questions'
 		
 		}) 
 	};
