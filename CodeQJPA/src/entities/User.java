@@ -13,14 +13,12 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="user")
 public class User {
 	@Id
-	@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
@@ -33,9 +31,12 @@ public class User {
 	private List<Exam> exams;
 	
 	//@JsonBackReference("question-user")
+	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Question> questions;
+	
+	public User() {}
 	
 	public List<Question> getQuestions() {
 		return questions;
@@ -45,7 +46,6 @@ public class User {
 		this.questions = questions;
 	}
 
-	public User() {}
 	
 	public List<Exam> getExams() {
 		return exams;

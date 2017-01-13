@@ -23,25 +23,31 @@ public class CategoryDAO {
 
 
 	public Category update(int id, Category categoryJson) {
-		// TODO Auto-generated method stub
-		return null;
+		Category category = em.find(Category.class, id);
+	category.setName(categoryJson.getName());
+	category.setQuestions(categoryJson.getQuestions());
+	em.persist(category);
+	em.flush();
+	return category;
 	}
 
 
 	public Category show(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Category.class, id);
 	}
 
 
-	public Category create(Category categoryJson) {
-		// TODO Auto-generated method stub
-		return null;
+	public Category create(Category newCategory) {
+		em.persist(newCategory);
+		em.flush();
+		
+		return newCategory;
 	}
 
 
 	public Category destroy(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Category category = em.find(Category.class, id);
+		em.remove(category);
+		return category;
 	}
 }
