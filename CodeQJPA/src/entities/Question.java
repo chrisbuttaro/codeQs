@@ -31,12 +31,14 @@ public class Question {
 	//@JsonBackReference("question-category")
 	@ManyToOne
 	@JoinColumn(name = "category_id")
+	@JsonIgnore
 	private Category category;
 	
 
 	//@JsonManagedReference("question-user")
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 
 	
@@ -45,14 +47,15 @@ public class Question {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Answer> answers;
 	
-//	@JsonIgnore
 	@ManyToMany(mappedBy = "questions")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private List<Exam> exams;
 	
 	//@JsonManagedReference(value="q_eq")
 	@OneToMany(mappedBy = "question")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private List<ExamQuestion> examQuestion;
 	
 	public List<ExamQuestion> getExamQuestion() {

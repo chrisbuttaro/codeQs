@@ -8,14 +8,16 @@ app.component('testComponent', {
 
 		    vm.data=[]
 		    
-//		    vm.Questions = function(){
-//		        testService.getQuestions()
-//		          .then(function(response){
-//		            vm.data = response.data;
-//		          });
-//		    
-//		    	}
-//		    vm.Questions(); 
+		    vm.questions = function(){
+		        testService.getQuestionsByCategory()
+		          .then(function(response){
+		            vm.data = response.data;
+		            console.log(response.data);
+		          });
+		    
+		    }
+		    vm.questions();
+		    console.log(vm.data);
 		    },
 
   template : `
@@ -23,6 +25,7 @@ app.component('testComponent', {
     <br>
 	  <h2>Hello {{$ctrl.currentUser().name}}</h2>  
 	  <h2>Hello {{$ctrl.currentUser().id}}</h2>  
-		    `
+	  <h1>{{$ctrl.data[1].id}}</h1>
+	`
   
 });

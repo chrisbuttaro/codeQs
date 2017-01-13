@@ -53,4 +53,9 @@ public class QuestionDAO {
 		em.remove(Question);
 		return Question;
 	}
+	
+	public List<Question> getQuestionsByCategory(int id) {
+		String query = "select q from Question q where category_id =" + id;
+		return em.createQuery(query, Question.class).getResultList();
+	}
 }
