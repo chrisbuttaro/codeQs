@@ -43,6 +43,7 @@ public class Question {
 	public List<ExamQuestion> getExamQuestion() {
 		return examQuestion;
 	}
+
 	
 	@JsonManagedReference("question-answer")
 	@OneToMany(mappedBy = "question")
@@ -58,7 +59,6 @@ public class Question {
 	@OneToMany(mappedBy = "question")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ExamQuestion> examQuestion;
-	
 	
 	
 	public void setExamQuestion(List<ExamQuestion> examQuestion) {
