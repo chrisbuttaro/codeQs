@@ -13,7 +13,10 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="user")
@@ -26,11 +29,10 @@ public class User {
 	
 	private String password;
 	
-	
+	@JsonIgnore
 	@OneToMany( fetch = FetchType.EAGER,mappedBy="user")
 	private List<Exam> exams;
 	
-	//@JsonBackReference("question-user")
 	@JsonIgnore
 	@OneToMany(mappedBy="user")
 	@LazyCollection(LazyCollectionOption.FALSE)
