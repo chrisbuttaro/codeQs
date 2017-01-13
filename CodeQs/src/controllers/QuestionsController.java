@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -66,9 +67,9 @@ public class QuestionsController {
 //        questionDAO.destroy(id);
 //    }
     
-    @RequestMapping(path = "category/{id}/questions", method = RequestMethod.GET)
-    public List<Question> getQuestionsByCategory(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
-    	return questionDAO.getQuestionsByCategory(id);
+    @RequestMapping(path = "category/{cid}/questions", method = RequestMethod.GET)
+    public List<Question> getQuestionsByCategory(HttpServletRequest req, HttpServletResponse res, @RequestParam("category") int cid) {
+    	return questionDAO.getQuestionsByCategory(cid);
     }
     
 }

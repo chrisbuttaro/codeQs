@@ -3,7 +3,8 @@ var app = angular.module("ngCodeQs");
   app.component('categoryComponent', {
   controller : function(categoryService, authenticationService, $location) {
       var vm = this;
-      vm.go = function ( path ) {
+      vm.go = function (id) {
+    	  var path = "/test/" + id;
       	  $location.path( path );
       	};
       vm.currentUser=authenticationService.currentUser;
@@ -27,7 +28,7 @@ var app = angular.module("ngCodeQs");
     template : `
       
       <h2>Hello {{$ctrl.currentUser().name}}</h2>
-      <button class="btn btn-success btn-lg btn-block" ng-click="$ctrl.go('/test')">Java</button>
+      <button class="btn btn-success btn-lg btn-block" ng-click="$ctrl.go(c.id)" ng-repeat="c in $ctrl.data">{{c.name}}</button>
     <h1>Category Component</h1>
      <br>
      <table>

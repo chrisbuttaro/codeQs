@@ -8,12 +8,13 @@ angular.module("ngCodeQs", ['ngRoute'])
     	template: '<registration-component></registration-component>'
     })
     .when('/category',{
+    	//:id
     	template: '<category-component></category-component>'
     }).when('/results',{
     	template: '<results-component></results-component>'
     })
     .when('/test/:id',{
-    	template: '<test-component bound-data="$resolve.myData"></test-component>',
+    	template: '<test-component category="$resolve.category"></test-component>',
     	resolve : {
     	   myData : function($route) {
     	    var id = $route.current.params.id;
@@ -22,8 +23,14 @@ angular.module("ngCodeQs", ['ngRoute'])
 //    	        .then(function(res) {
 //    	            return res.data;
     	              // })
+    	           },
+    	           category : function($route, categoryService) {
+    	        	   return categoryService.getCategory($route.current.params.id)
+    	        	   	.then(function(res) {
+    	        	   		return res.data;
+    	        	   	})
     	           }
-    	         }
+    	         },
     })
     .when('/profile',{
     	template: '<profile-component></profile-component>'
