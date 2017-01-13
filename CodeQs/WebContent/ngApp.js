@@ -12,8 +12,18 @@ angular.module("ngCodeQs", ['ngRoute'])
     }).when('/results',{
     	template: '<results-component></results-component>'
     })
-    .when('/test',{
-    	template: '<test-component></test-component>'
+    .when('/test/:id',{
+    	template: '<test-component bound-data="$resolve.myData"></test-component>',
+    	resolve : {
+    	   myData : function($route) {
+    	    var id = $route.current.params.id;
+    	    return id;
+//    	     return todoService.getTodo(id)
+//    	        .then(function(res) {
+//    	            return res.data;
+    	              // })
+    	           }
+    	         }
     })
     .when('/profile',{
     	template: '<profile-component></profile-component>'
