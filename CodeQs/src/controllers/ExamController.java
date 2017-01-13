@@ -25,22 +25,19 @@ public class ExamController {
 			
 		return ExamDAO.index();
 	}
-	
-	@RequestMapping(path="exams/{id}", method=RequestMethod.PUT)
-	public Exam update(@PathVariable int id, @RequestBody Exam ExamJson){
-		System.out.println("in controller "+ExamJson);
-	return ExamDAO.update(id, ExamJson); 
-}
-
 	@RequestMapping(path="exams/{id}", method=RequestMethod.GET)
 	public Exam show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
 		return ExamDAO.show(id);
 	}
+	
+	@RequestMapping(path="exams/{id}", method=RequestMethod.PUT)
+	public Exam update(@PathVariable int id, @RequestBody Exam ExamJson){
+	return ExamDAO.update(id, ExamJson); 
+}
 
 	
 	@RequestMapping(path="exams", method=RequestMethod.POST)
 	public Exam create(@RequestBody Exam ExamJson) {
-		
 		return ExamDAO.create(ExamJson);
 		
 	}

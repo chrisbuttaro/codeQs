@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -30,6 +33,7 @@ public class User {
 	
 	@JsonBackReference("question-user")
 	@OneToMany(mappedBy="user")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Question> questions;
 	
 	public List<Question> getQuestions() {

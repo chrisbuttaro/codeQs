@@ -42,10 +42,10 @@ public class ExamDAO {
 	}
 
 	public Exam destroy(int id) {
-		Exam t = em.find(Exam.class, id);
+		Exam e = em.find(Exam.class, id);
 		em.createQuery("Delete from Exam e where e.id=" + id).executeUpdate();
 
-		return t;
+		return e;
 
 	}
 
