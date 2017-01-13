@@ -1,5 +1,6 @@
 package entities;
 
+import java.lang.annotation.Repeatable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,13 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String question;
-	
+
 	@JsonBackReference("question-category")
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
+	
+	
 	
 	@JsonBackReference("question-user")
 	@ManyToOne
