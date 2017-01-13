@@ -10,8 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="user")
@@ -28,7 +28,7 @@ public class User {
 	@OneToMany( fetch = FetchType.EAGER,mappedBy="user")
 	private List<Exam> exams;
 	
-	@JsonManagedReference("question-user")
+	@JsonBackReference("question-user")
 	@OneToMany(mappedBy="user")
 	private List<Question> questions;
 	
