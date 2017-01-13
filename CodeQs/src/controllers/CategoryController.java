@@ -15,24 +15,30 @@ import org.springframework.web.bind.annotation.RestController;
 import data.CategoryDAO;
 import entities.Category;
 @RestController
+@RequestMapping("category")
 public class CategoryController {
     
     @Autowired
     private CategoryDAO CategoryDAO;
 
-    @RequestMapping(path="codeqs", method=RequestMethod.GET)
+    @RequestMapping(value = "ping", method=RequestMethod.GET)
+    public String ping(){
+    	return "pong";
+    }
+    
+    @RequestMapping(path="", method=RequestMethod.GET)
     public List<Category> index(HttpServletRequest req, HttpServletResponse res) {
             
         return CategoryDAO.index();
     }
     
-    @RequestMapping(path="codeqs/{id}", method=RequestMethod.PUT)
+    @RequestMapping(path="/{id}", method=RequestMethod.PUT)
     public Category update(@PathVariable int id, @RequestBody Category categoryJson){
         System.out.println("in controller "+categoryJson);
     return CategoryDAO.update(id, categoryJson);
 }
 
-    @RequestMapping(path="codeqs/{id}", method=RequestMethod.GET)
+    @RequestMapping(path="/{id}", method=RequestMethod.GET)
     public Category show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
         return CategoryDAO.show(id);
     }
@@ -40,15 +46,15 @@ public class CategoryController {
     
 
     
-    @RequestMapping(path="codeqs", method=RequestMethod.POST)
-    public Category create(@RequestBody Category categoryJson) {
+    @RequestMapping(path="", method=RequestMethod.POST)
+    public Category create(@RequestBody Category newCategory) {
         
-        return CategoryDAO.create(categoryJson);
+        return CategoryDAO.create(newCategory);
         
     }
 
     
-    @RequestMapping(path="codeqs/{id}", method=RequestMethod.DELETE)
+    @RequestMapping(path="/{id}", method=RequestMethod.DELETE)
     public Category destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
         return CategoryDAO.destroy(id);
     }
