@@ -9,12 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="answer")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Answer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +21,7 @@ public class Answer {
 	//@JsonBackReference("question-answer")
 	@ManyToOne
 	@JoinColumn(name="question_id")
+	@JsonIgnore
 	private Question question;
 	
 	private String answer;

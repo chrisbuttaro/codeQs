@@ -10,19 +10,18 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="category")
-@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
 	//@JsonManagedReference("question-category")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
+	@JsonIgnore
 	private List<Question> questions;
 	
 	public Category() {};
