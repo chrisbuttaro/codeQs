@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,7 +24,6 @@ public class Exam {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -34,10 +34,11 @@ public class Exam {
 	private List<Question> questions;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="exam")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="exam")
 	private List <ExamQuestion> examQuestion;
 
-	
+	public Exam() {
+	}
 	
 	public List<ExamQuestion> getExamQuestion() {
 		return examQuestion;
@@ -70,9 +71,6 @@ public class Exam {
 
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
-	}
-
-	public Exam() {
 	}
 
 	public User getUser() {

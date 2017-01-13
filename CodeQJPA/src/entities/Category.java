@@ -10,20 +10,23 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="category")
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
-	@JsonManagedReference("question-category")
+	//@JsonManagedReference("question-category")
 	private List<Question> questions;
+	
+	public Category() {};
+	
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -32,7 +35,6 @@ public class Category {
 		this.questions = questions;
 	}
 
-	public Category() {};
 	
 	public Category(int id, String name) {
 		this.id = id;

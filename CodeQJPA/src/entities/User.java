@@ -10,11 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name="user")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +28,16 @@ public class User {
 	
 	private String password;
 	
-	@JsonIgnore
+	
 	@OneToMany( fetch = FetchType.EAGER,mappedBy="user")
 	private List<Exam> exams;
 	
-	@JsonManagedReference("question-user")
+	//@JsonBackReference("question-user")
 	@OneToMany(mappedBy="user")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Question> questions;
+	
+	public User() {}
 	
 	public List<Question> getQuestions() {
 		return questions;
@@ -40,7 +47,6 @@ public class User {
 		this.questions = questions;
 	}
 
-	public User() {}
 	
 	public List<Exam> getExams() {
 		return exams;

@@ -9,11 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 //entity
 @Entity
 @Table(name = "test_question")
+@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class ExamQuestion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +27,16 @@ public class ExamQuestion {
 	private Exam exam;
 	
 	// question mapping
-	@JsonBackReference(value="q_eq")
+	//@JsonBackReference(value="q_eq")
 	@ManyToOne
 	@JoinColumn(name="question_id")
 	private Question question;
 	
 	@Column(name="is_right")
 	private boolean isRight;
+	
+	public ExamQuestion() {
+	}
 
 	public Exam getExam() {
 		return exam;
@@ -50,8 +55,6 @@ public class ExamQuestion {
 	}
 
 
-	public ExamQuestion() {
-	}
 
 	public boolean isRight() {
 		return isRight;
