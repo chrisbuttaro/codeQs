@@ -22,7 +22,6 @@ angular.module('ngCodeQs')
     	  }
     	  })
               .then(function(response){
-            	  console.log(response)
                 service.saveToken(response.data.jwt);
                 $location.path('/category') 
                 
@@ -69,13 +68,18 @@ angular.module('ngCodeQs')
 
     // Get current user from JWT
     service.currentUser = function() {
+        
       if (service.isLoggedIn()) {
         var token = service.getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
+        //var id=JSON.parse($window.atob(token.split('.')[1])).user_id;
 
         return {
-          name : payload.username
+          name : payload.username,
+          id   : payload.user_id
+        
         };
+       
       }
     };
 
