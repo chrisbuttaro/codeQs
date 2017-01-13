@@ -34,15 +34,11 @@ public class Question {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
-	
-	
-	@JsonBackReference("question-user")
+
+	@JsonManagedReference("question-user")
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	public List<ExamQuestion> getExamQuestion() {
-		return examQuestion;
-	}
 
 	
 	@JsonManagedReference("question-answer")
@@ -60,6 +56,9 @@ public class Question {
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<ExamQuestion> examQuestion;
 	
+	public List<ExamQuestion> getExamQuestion() {
+		return examQuestion;
+	}
 	
 	public void setExamQuestion(List<ExamQuestion> examQuestion) {
 		this.examQuestion = examQuestion;

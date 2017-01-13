@@ -13,8 +13,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="user")
@@ -31,7 +31,7 @@ public class User {
 	@OneToMany( fetch = FetchType.EAGER,mappedBy="user")
 	private List<Exam> exams;
 	
-	@JsonManagedReference("question-user")
+	@JsonBackReference("question-user")
 	@OneToMany(mappedBy="user")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Question> questions;
