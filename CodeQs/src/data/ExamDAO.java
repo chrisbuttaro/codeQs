@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Exam;
+import entities.User;
 
 @Transactional
 @Repository
@@ -35,7 +36,9 @@ public class ExamDAO {
 		return existingExam;
 	}
 
-	public Exam create(Exam ExamJson) {
+	public Exam create(Exam ExamJson, int id) {
+		User u = em.find(User.class, id);
+		ExamJson.setUser(u);
 		em.persist(ExamJson);
 		em.flush();
 		return ExamJson;

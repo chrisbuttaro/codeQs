@@ -72,7 +72,6 @@ angular.module('ngCodeQs')
       if (service.isLoggedIn()) {
         var token = service.getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
-        //var id=JSON.parse($window.atob(token.split('.')[1])).user_id;
 
         return {
           name : payload.username,
