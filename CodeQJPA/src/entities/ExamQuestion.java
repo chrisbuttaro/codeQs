@@ -21,7 +21,6 @@ public class ExamQuestion {
 	
 	// exam mapping
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name="test_id")
 	private Exam exam;
 	
