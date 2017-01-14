@@ -68,7 +68,7 @@ public class QuestionsController {
 //    }
     
     @RequestMapping(path = "category/{cid}/questions", method = RequestMethod.GET)
-    public List<Question> getQuestionsByCategory(HttpServletRequest req, HttpServletResponse res, @RequestParam("category") int cid) {
+    public List<Question> getQuestionsByCategory(HttpServletRequest req, HttpServletResponse res, @PathVariable int cid) {
     	return questionDAO.getQuestionsByCategory(cid);
     }
     

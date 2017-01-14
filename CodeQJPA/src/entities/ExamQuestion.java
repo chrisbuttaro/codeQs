@@ -9,8 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //entity
 @Entity
@@ -22,12 +21,14 @@ public class ExamQuestion {
 	
 	// exam mapping
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="test_id")
 	private Exam exam;
 	
 	// question mapping
 	//@JsonBackReference(value="q_eq")
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name="question_id")
 	private Question question;
 	
