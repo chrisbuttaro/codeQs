@@ -29,7 +29,7 @@ public class UserProfileDAO {
 //	}
 	
 	public List<Exam> getUserExamByCategory(int uid, int cid){
-		String query = "SELECT e FROM Exam e WHERE e.examQuestion.question.category.id = " + cid + " AND e.user.id = " +uid; 
+		String query = "SELECT e FROM Exam e WHERE e.category.id = " + cid + " AND e.user.id = " +uid; 
 		List<Exam> exams = em.createQuery(query, Exam.class).getResultList();
 		
 		return exams;

@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -24,6 +28,20 @@ public class Category {
 	@JsonIgnore
 	private List<Question> questions;
 	
+//	@OneToMany
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
+//	@LazyCollection(LazyCollectionOption.FALSE)
+	private Set<Exam> exams;
+	
+	public Set<Exam> getExams() {
+		return exams;
+	}
+
+	public void setExams(Set<Exam> exams) {
+		this.exams = exams;
+	}
+
 	public Category() {};
 	
 	public List<Question> getQuestions() {
