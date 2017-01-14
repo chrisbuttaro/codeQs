@@ -2,7 +2,7 @@ var app = angular.module("ngCodeQs");
 
 app.component('testComponent', {
 	
-	 controller : function(testService, authenticationService) {
+	 controller : function(testService, authenticationService,$location) {
 		    var vm = this;
 		    vm.currentUser=authenticationService.currentUser;
 
@@ -26,6 +26,7 @@ app.component('testComponent', {
 	  <h2>Hello {{$ctrl.currentUser().name}}</h2>  
 	  <h2>Hello {{$ctrl.currentUser().id}}</h2>  
 	  <h1>{{$ctrl.data[1].id}}</h1>
+	
 	`,
 	bindings : {
 	  category : '<'
