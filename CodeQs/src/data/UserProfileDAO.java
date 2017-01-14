@@ -29,8 +29,8 @@ public class UserProfileDAO {
 //	}
 	
 	public List<Exam> getUserExamByCategory(int uid, int cid){
-//		String query = "SELECT e FROM Exam e JOIN e.examQuestion eq WHERE eq.question.category.id = " + cid + " AND e.user.id = " +uid; 
-		String query = "SELECT u.id, c.id FROM User u JOIN Exam e on u.exam=e.userId JOIN testQuestion tq on e.testQuestion=tq.testId JOIN question q on tq.quesiton=q.id JOINcategory c on q.category=c.id WHERE u.id = " + uid + " AND c.id = " +cid; 
+
+		String query = "SELECT e FROM Exam e WHERE e.category.id = " + cid + " AND e.user.id = " +uid; 
 		List<Exam> exams = em.createQuery(query, Exam.class).getResultList();
 		
 		return exams;
