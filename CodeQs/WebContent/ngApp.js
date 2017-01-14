@@ -14,23 +14,8 @@ angular.module("ngCodeQs", ['ngRoute'])
     	template: '<results-component></results-component>'
     })
     .when('/test/:id',{
-    	template: '<test-component category="$resolve.category"></test-component>',
-    	resolve : {
-    	   myData : function($route) {
-    	    var id = $route.current.params.id;
-    	    return id;
-//    	     return todoService.getTodo(id)
-//    	        .then(function(res) {
-//    	            return res.data;
-    	              // })
-    	           },
-    	           category : function($route, categoryService) {
-    	        	   return categoryService.getCategory($route.current.params.id)
-    	        	   	.then(function(res) {
-    	        	   		return res.data;
-    	        	   	})
-    	           }
-    	         },
+    	template: ' <test-component></test-component>',
+    	
     })
     .when('/profile',{
     	template: '<profile-component></profile-component>'
