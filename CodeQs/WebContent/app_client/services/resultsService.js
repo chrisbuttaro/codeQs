@@ -4,10 +4,10 @@ app.factory('resultsService', function($http) {
 
   var service = {};
 
-service.getResults = function() {
+service.getResults = function(eid) {
     return $http({
       method : 'GET',
-      url : 'api/results/'
+      url : 'api/exams/' + eid + '/results/'
     })	  
   };
 
