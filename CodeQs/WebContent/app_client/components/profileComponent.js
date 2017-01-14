@@ -3,11 +3,7 @@ var app = angular.module("ngCodeQs");
 app.component('profileComponent', {
 	  controller : function(profileService, authenticationService, $location) {
 	      var vm = this;
-	      vm.go = function (id) {
-	    	  profileService.testId=id; 
-	    	  var path = "/profile/" + id;
-	      	  $location.path( path );
-	      	};
+	    
 	      vm.currentUser=authenticationService.currentUser;
 	    
 	 	    vm.data=[]

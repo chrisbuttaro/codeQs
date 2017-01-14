@@ -9,19 +9,19 @@ angular.module("ngCodeQs", ['ngRoute'])
     })
     .when('/category',{
     	//:id
-    	template: '<category-component></category-component>'
+    	template: '<nav-component></nav-component><category-component></category-component>'
     }).when('/results',{
-    	template: '<results-component></results-component>'
+    	template: '<nav-component></nav-component><results-component></results-component>'
     })
     .when('/test/:id',{
-    	template: ' <test-component></test-component>',
+    	template: ' <nav-component></nav-component><test-component></test-component>',
     	
     })
     .when('/profile',{
-    	template: '<profile-component></profile-component>'
+    	template: '<nav-component></nav-component><profile-component></profile-component>'
     })
     .when('/wrongList',{
-    	template: '<wrong-list-component></wrong-list-component>'
+    	template: '<nav-component></nav-component><wrong-list-component></wrong-list-component>'
     })
 //    .when('/todos/:id',{
 //    	 template : '<todo-detail todo=$resolve.myData></todo-detail>',
