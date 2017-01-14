@@ -17,7 +17,6 @@ var app = angular.module("ngCodeQs");
  	          .then(function(response){
  	            vm.data = response.data;
  	    	    console.log(response.data);
- 
  	          });
  	    }
  	    vm.Category(); 
