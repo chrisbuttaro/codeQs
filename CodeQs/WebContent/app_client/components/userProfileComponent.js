@@ -5,7 +5,7 @@ app.component('profileComponent', {
 	      var vm = this;
 	      vm.go = function (id) {
 	    	  profileService.testId=id; 
-	    	  var path = "/test/" + id;
+	    	  var path = "/profile/" + id;
 	      	  $location.path( path );
 	      	};
 	      vm.currentUser=authenticationService.currentUser;
