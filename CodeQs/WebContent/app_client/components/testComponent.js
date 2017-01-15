@@ -7,10 +7,10 @@ app.component('testComponent', {
     <br>
   
 	  <table>
-       <tr ng-repeat="question in $ctrl.questions">
-         <td><b>{{question.question}}</b>
+       <tr ng-repeat="question in $ctrl.questions" ng-init="outerIndex = $index">
+         <td><b>{{$index+1}}. {{ question.question}}</b>
           <div ng-repeat="answer in question.answers">
-          <div>{{answer.answer}}</div>
+          <div><input type="radio" name={{outerIndex}}> </input>{{ answer.answer}}</div>
           </div>
            <br>
        </tr>

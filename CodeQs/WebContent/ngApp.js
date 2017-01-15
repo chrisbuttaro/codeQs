@@ -31,7 +31,7 @@ angular.module("ngCodeQs", ['ngRoute'])
      	 	        for (var i=0; i<resQuestions.data.length; i++){
      	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
      	 			    	}
-     	 	       console.log(resQuestions.data);
+     	 	       console.log(resQuestions.data[1].answers);
      		    });
             	  return resQuestions.data;
               });
