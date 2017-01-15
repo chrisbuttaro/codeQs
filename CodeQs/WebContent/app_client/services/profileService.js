@@ -7,12 +7,12 @@ app.factory('profileService', function($http) {
 	vm.profileId;
 	
 	
-	service.getAllExamsTaken = function(eid){
-		console.log("in profile, eid =" + eid)
+	service.getAllExamsTaken = function(uid, cid){
 		return $http({
 			method : 'GET',
-			url : 'api/profile/'
+			url : 'api/user/' + uid + '/category/' + cid + '/exam'
 		})
 	};
+	
 	return service;
 });

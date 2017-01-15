@@ -1,15 +1,14 @@
 var app = angular.module("ngCodeQs");
 
 app.component('navComponent', {
-	controller : function(authenticationService, $location) {
+	controller : function(profileService, authenticationService, $location) {
 	var vm = this;
-	console.log("Shit");
 	
 	vm.currentUser=authenticationService.currentUser;
 	
-	vm.go = function (id) {
-	    	  profileService.profileId=id; 
-	    	  var path = "/profile/" + id;
+	vm.go = function () {
+//	    	  profileService.profileId=id; 
+	    	  var path = "/profile/"
 	      	  $location.path( path );
 	      	};
 	      	
@@ -17,8 +16,8 @@ app.component('navComponent', {
 
 	template : `
 	<div>
-		<p>You are logged in as {{$ctrl.currentUser().name}}, DICK!</p>
-		<button class="btn btn-success btn-lg" ng-click="$ctrl.go(id)">Go to Profile</button>
+		<p>You are logged in as {{$ctrl.currentUser().name}}</p>
+		<button class="btn btn-success btn-lg" ng-click="$ctrl.go()">Go to Profile</button>
 	
 	<div>
 	

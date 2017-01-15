@@ -36,9 +36,9 @@ public class ExamController {
 }
 
 	
-	@RequestMapping(path="/user/{id}/exams", method=RequestMethod.POST)
-	public Exam create(@RequestBody Exam ExamJson, @PathVariable("id")int id) {
-		return ExamDAO.create(ExamJson, id);
+	@RequestMapping(path="/user/{id}/category/{cid}/exams", method=RequestMethod.POST)
+	public Exam create(@RequestBody Exam ExamJson, @PathVariable("id")int id, @PathVariable("cid") int cid) {
+		return ExamDAO.create(ExamJson, id, cid);
 		
 	}
 

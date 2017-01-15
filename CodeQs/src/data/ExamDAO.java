@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Category;
 import entities.Exam;
 import entities.User;
 
@@ -36,9 +37,11 @@ public class ExamDAO {
 		return existingExam;
 	}
 
-	public Exam create(Exam ExamJson, int id) {
+	public Exam create(Exam ExamJson, int id, int cid) {
 		User u = em.find(User.class, id);
+		Category category = em.find(Category.class, cid);
 		ExamJson.setUser(u);
+		ExamJson.setCategory(category);
 		em.persist(ExamJson);
 		em.flush();
 		return ExamJson;

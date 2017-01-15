@@ -13,26 +13,27 @@ angular.module("ngCodeQs", ['ngRoute'])
     }).when('/results',{
     	template: '<nav-component></nav-component><results-component></results-component>'
     })
-    .when('/test/:id',{
+    .when('/test/:catId',{
     	template: '<nav-component></nav-component><test-component questions=$resolve.myData></test-component>',
     	
     	resolve : {
     	       
             myData : function(testService, authenticationService, $route) {
-              var id = $route.current.params.id;
+              var catId = $route.current.params.catId;
 
-              return testService.getQuestionsByCategory(id)
+              return testService.getQuestionsByCategory(catId)
               .then(function(resQuestions){
-            	  console.log(resQuestions)
-                testService.createExam(authenticationService.currentUser().id)
+//            	  console.log(resQuestions)
+                testService.createExam(authenticationService.currentUser().id, catId)
      		     .then(function(resExam){
      		    	 testService.examId=resExam.data.id; 
-     		    	console.log("new exam data "+resExam.data.id);
-     	 	         console.log(resQuestions.data.length)
+//     		    	 testService.categoryId = catId;
+//     		    	console.log("new exam data "+resExam.data.id);
+//     	 	         console.log(resQuestions.data.length)
      	 	        for (var i=0; i<resQuestions.data.length; i++){
      	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
      	 			    	}
-     	 	       console.log(resQuestions.data[1].answers);
+//     	 	       console.log(resQuestions.data[1].answers);
      		    });
             	  return resQuestions.data;
               });

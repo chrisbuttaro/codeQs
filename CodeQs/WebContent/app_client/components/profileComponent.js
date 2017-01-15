@@ -8,15 +8,15 @@ app.component('profileComponent', {
 	    
 	 	    vm.data=[]
 	 	    
-	 	    vm.Profile = function(){
-	 	        profileService.getProfiles()
+	 	    vm.getAllExamsTaken = function(){
+	 	        profileService.getAllExamsTaken(1,1)
 	 	          .then(function(response){
 	 	            vm.data = response.data;
 	 	    	    console.log(response.data);
 	 
 	 	          });
 	 	    }
-	 	    vm.Profile(); 
+	 	    vm.getAllExamsTaken(); 
 	 	    console.log(vm.data);
 	   },
 	      
