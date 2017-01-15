@@ -1,6 +1,7 @@
 angular.module('ngCodeQs').factory('testService', function($http, $location) {
 	var service = {};
-	
+	var vm=this;
+	vm.examId;
 	
 	service.createExam=function(uid){
 		return $http({
@@ -32,6 +33,15 @@ angular.module('ngCodeQs').factory('testService', function($http, $location) {
 		
 		}) 
 	};
+	
+	service.updateTestQ=function(ansCorrect, qId, eId){
+		return $http({
+			method : "PUT",
+			url : 'api/Exam/'+eId+'/Question/'+qId+'/right/'+ansCorrect+'/ExamQuestions'
+		
+		
+		}) 
+	}
 
 	return service;
 });

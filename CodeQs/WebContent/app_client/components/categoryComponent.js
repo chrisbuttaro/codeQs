@@ -4,7 +4,6 @@ var app = angular.module("ngCodeQs");
   controller : function(categoryService, authenticationService, $location) {
       var vm = this;
       vm.go = function (id) {
-    	  categoryService.categoryId=id; 
     	  var path = "/test/" + id;
       	  $location.path( path );
       	};

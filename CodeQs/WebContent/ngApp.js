@@ -26,6 +26,7 @@ angular.module("ngCodeQs", ['ngRoute'])
             	  console.log(resQuestions)
                 testService.createExam(authenticationService.currentUser().id)
      		     .then(function(resExam){
+     		    	 testService.examId=resExam.data.id; 
      		    	console.log("new exam data "+resExam.data.id);
      	 	         console.log(resQuestions.data.length)
      	 	        for (var i=0; i<resQuestions.data.length; i++){

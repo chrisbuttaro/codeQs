@@ -37,5 +37,12 @@ public class ExamQuestionController {
 		
 		
 	}
+	
+	@RequestMapping(path="/Exam/{eId}/Question/{qId}/right/{ansCorrect}/ExamQuestions", method=RequestMethod.PUT)
+	public void update( @PathVariable("eId")int eId, @PathVariable("qId")int qId, @PathVariable("ansCorrect")boolean ansCorrect) {
+		System.out.println("eId "+eId+" qId "+qId+" ansCorr "+ansCorrect);
+		 ExamQuestionDAO.update(eId, qId, ansCorrect);
+		
+	}
 
 }
