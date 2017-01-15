@@ -8,6 +8,7 @@ app.factory('profileService', function($http) {
 	
 	
 	service.getAllExamsTaken = function(uid, cid){
+		console.log(uid + cid);
 		return $http({
 			method : 'GET',
 			url : 'api/user/' + uid + '/category/' + cid + '/exam'

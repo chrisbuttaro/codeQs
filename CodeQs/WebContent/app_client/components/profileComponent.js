@@ -9,14 +9,14 @@ app.component('profileComponent', {
 	 	    vm.data=[]
 	 	    
 	 	    vm.getAllExamsTaken = function(){
-	 	        profileService.getAllExamsTaken(1,1)
+	 	        profileService.getAllExamsTaken(2,1)
 	 	          .then(function(response){
 	 	            vm.data = response.data;
 	 	    	    console.log(response.data);
 	 
 	 	          });
 	 	    }
-	 	    vm.getAllExamsTaken(); 
+	 	    vm.getAllExamsTaken();
 	 	    console.log(vm.data);
 	   },
 	      
@@ -24,17 +24,10 @@ app.component('profileComponent', {
 	  
 	    template : `
 	      
-	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
-	      <button class="btn btn-success btn-lg btn-block" ng-click="$ctrl.go(p.id)" ng-repeat="p in $ctrl.data">{{p.name}}</button>
-	    <h1>Profile Component</h1>
-	     <br>
-	     <table>
-	       <tr>
-	         <th>Profile</th>
-	       </tr>
-	       <tr ng-repeat=" exam in $ctrl.data">
-	         <td>{{category.name}}</td>
-	       </tr>
-	     </table>
+	    	<h1>{{$ctrl.currentUser().name}} Profile</h1>
+	    	<h3>Tests Taken</h3>
+	      <ul>
+	      <li ng-repeat="exam in $ctrl.data">exam id: {{exam.id}}, category: {{exam.category.name}} </li>
+	      </ul>
 	 `
 	  }); 
