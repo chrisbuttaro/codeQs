@@ -14,7 +14,7 @@ angular.module("ngCodeQs", ['ngRoute'])
     	template: '<nav-component></nav-component><results-component></results-component>'
     })
     .when('/test/:id',{
-    	template: ' <test-component questions=$resolve.myData></test-component>',
+    	template: '<nav-component></nav-component><test-component questions=$resolve.myData></test-component>',
     	
     	resolve : {
     	       

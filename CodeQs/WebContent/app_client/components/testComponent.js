@@ -5,14 +5,16 @@ app.component('testComponent', {
   template : `
     <h1>Test Component</h1>
     <br>
-    <h1>
+  
 	  <table>
-       <tr>
-         <th>Category</th>
-       </tr>
        <tr ng-repeat="question in $ctrl.questions">
-         <td>{{question.question}}</td>
+         <td><b>{{question.question}}</b>
+          <div ng-repeat="answer in question.answers">
+          <div>{{answer.answer}}</div>
+          </div>
+           <br>
        </tr>
+      
      </table>
 	  `  ,
      bindings : {
