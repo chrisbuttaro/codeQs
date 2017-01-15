@@ -14,36 +14,35 @@ angular.module("ngCodeQs", ['ngRoute'])
     	template: '<nav-component></nav-component><results-component></results-component>'
     })
     .when('/test/:id',{
-    	template: ' <nav-component></nav-component><test-component></test-component>',
+    	template: ' <test-component questions=$resolve.myData></test-component>',
     	
+    	resolve : {
+    	       
+            myData : function(testService, authenticationService, $route) {
+              var id = $route.current.params.id;
+
+              return testService.getQuestionsByCategory(id)
+              .then(function(resQuestions){
+            	  console.log(resQuestions)
+                testService.createExam(authenticationService.currentUser().id)
+     		     .then(function(resExam){
+     		    	console.log("new exam data "+resExam.data.id);
+     	 	         console.log(resQuestions.data.length)
+     	 	        for (var i=0; i<resQuestions.data.length; i++){
+     	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
+     	 			    	}
+     	 	       console.log(resQuestions.data);
+     		    });
+            	  return resQuestions.data;
+              });
+            }
+          }
     })
+    
     .when('/profile',{
     	template: '<nav-component></nav-component><profile-component></profile-component>'
     })
     .when('/wrongList',{
     	template: '<nav-component></nav-component><wrong-list-component></wrong-list-component>'
     })
-//    .when('/todos/:id',{
-//    	 template : '<todo-detail todo=$resolve.myData></todo-detail>',
-//         resolve : {
-//       
-//           myData : function(todoService, $route) {
-//             var id = $route.current.params.id;
-//
-//             return todoService.getTodo(id)
-//               .then(function(res) {
-//            	   console.log(res.data);
-//                 return res.data;
-//               })
-//           }
-//         }
-    
-    	
-//   })
-//    .when('/about',{
-//    	templateUrl: 'app_client/views/about.html'
-//    })
-//    .when('/contact',{
-//    	templateUrl: 'app_client/views/contact.html'
-//    });
 	});
