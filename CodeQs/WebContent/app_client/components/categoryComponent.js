@@ -29,7 +29,7 @@ var app = angular.module("ngCodeQs");
       <h1>Category</h1>
       <p>Please choose a category from the list below:</p>
       <ul>
-      <li ng-repeat="c in $ctrl.data"><a href="#!/test/{{c.id}}" >{{c.name}}</a></li>
+    	<li ng-repeat="c in $ctrl.data"><a href="#!/test/{{c.id}}" >{{c.name}}</a></li>
       </ul>
  `
   }); 
