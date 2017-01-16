@@ -8,7 +8,6 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import entities.ExamQuestion;
 import entities.Question;
 
 @Repository
@@ -18,14 +17,11 @@ public class WrongListDAO {
 	private EntityManager em;
 	
 	public List<Question> getWrongListByUser(int uid, int cid) {
-		String query = "SELECT eq.question FROM ExamQuestion eq where eq.exam.user.id =" + uid + " AND eq.question.category.id = " + cid + " AND eq.isRight = false";
-		List<ExamQuestion> wrongList = em.createQuery(query, ExamQuestion.class).getResultList();
-		List<Question> wrongListQuestion = null;
-		for (ExamQuestion examQuestion : wrongList) {
-			wrongListQuestion.add(examQuestion.getQuestion());
-		}
-		System.out.println(wrongListQuestion);
-		return wrongListQuestion;
+		String query = "SELECT eq FROM ExamQuestion eq where eq.exam.user.id =" + uid + " AND eq.question.category.id = " + cid + " AND eq.isRight = false";
+		String query2 = "SELECT q FROM Question q JOIN q.examQuestion eq where eq.exam.user.id =" + uid + " AND q.category.id = " + cid + " AND eq.isRight = false";
+		List<Question> wrongList = em.createQuery(query2, Question.class).getResultList();
+		return wrongList;
+		
 	}
 
 }

@@ -25,24 +25,19 @@ public class ExamQuestionController {
 	
 	@RequestMapping(path="ExamQuestions", method=RequestMethod.GET)
 	public List<Exam> index(HttpServletRequest req, HttpServletResponse res) {
-			
+	
 		return ExamQuestionDAO.index();
 	}
 	
 	@RequestMapping(path="Exam/{id}/Question/{qid}/ExamQuestions", method=RequestMethod.POST)
 	public ExamQuestion create(@RequestBody ExamQuestion EQ, @PathVariable("id")int id, @PathVariable("qid")int qid) {
 		return ExamQuestionDAO.create(EQ, id, qid);
-		
-		
-		
-		
 	}
 	
 	@RequestMapping(path="/Exam/{eId}/Question/{qId}/right/{ansCorrect}/ExamQuestions", method=RequestMethod.PUT)
 	public void update( @PathVariable("eId")int eId, @PathVariable("qId")int qId, @PathVariable("ansCorrect")boolean ansCorrect) {
 		System.out.println("eId "+eId+" qId "+qId+" ansCorr "+ansCorrect);
 		 ExamQuestionDAO.update(eId, qId, ansCorrect);
-		
 	}
 
 }
