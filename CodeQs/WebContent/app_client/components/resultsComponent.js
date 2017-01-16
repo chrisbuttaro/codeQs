@@ -24,7 +24,7 @@ app.component('resultsComponent', {
 	    template : `
 	      
 	    	<h1>{{$ctrl.currentUser().name}} Profile</h1>
-	    	<h3>Tests Taken</h3>
+	    	<h3>Results of Test Taken</h3>
 	    	<div ng-hide="!$ctrl.data.length">
 	    	  <h4>Java</h4>	
 		      <ul ng-if="$ctrl.data">

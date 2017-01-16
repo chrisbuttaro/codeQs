@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,11 @@ public class ExamController {
 	@RequestMapping(path="exams/{id}", method=RequestMethod.DELETE)
 	public Exam destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
 		return ExamDAO.destroy(id);
+	}
+	
+	@RequestMapping(path="/user/{uid}/exams", method=RequestMethod.GET)
+	public Collection<Exam> getExamsByUser(@PathVariable("uid") int uid) {
+		return ExamDAO.getExamsForUser(uid);
 	}
 
 }

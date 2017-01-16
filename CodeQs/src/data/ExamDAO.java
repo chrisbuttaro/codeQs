@@ -1,6 +1,7 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -53,6 +54,13 @@ public class ExamDAO {
 
 		return e;
 
+	}
+	
+	public Collection<Exam> getExamsForUser(int userId) {
+		Collection<Exam> exams = em.createQuery("SELECT e FROM Exam e WHERE user.id = :uid")
+				.setParameter("uid", userId)
+				.getResultList();
+		return exams;
 	}
 
 }

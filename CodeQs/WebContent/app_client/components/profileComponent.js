@@ -1,45 +1,63 @@
 var app = angular.module("ngCodeQs");
 
 app.component('profileComponent', {
-	  controller : function(profileService, authenticationService, $location) {
+	  controller : function(profileService, authenticationService, categoryService, testService, $location) {
 	      var vm = this;
 	    
 	      vm.currentUser=authenticationService.currentUser;
+	     
 	    
-	 	    vm.data=[]
-	 	    vm.data2=[]
+//	 	    vm.data=[]
+//	 	    vm.data2=[]
+	 	    vm.exams =[];
+	 	   
+	 	    vm.go=function(id){
+	 	    	testService.ExamId=id;
+	 	    	console.log(id);
+	 	    	var path = "/results/" ;
 	 	    
-	 	    vm.getAllExamsTaken = function(){
-	 	        profileService.getAllExamsTaken(vm.currentUser().id,1)
-	 	          .then(function(response){
-	 	            vm.data = response.data;
-	 	          });
-	 	        profileService.getAllExamsTaken(vm.currentUser().id,2)
-	 	        	.then(function(response) {
-	 	        		vm.data2 = response.data;
-	 	        	});
+	 	      	  $location.path( path );
+	 	    	};
+	 	    
+//	 	    vm.category = function(){
+//	 	    	categoryService.getCategories()
+//	 	    	.then(function(response){
+//	 	    		vm.data2 = response.data;
+//	 	    		console.log(response.data);
+//	 	    	});
+//	 	    }
+//	 	    vm.category(); 
+//	 	    
+//	 	    vm.getAllExamsTaken = function(){
+//	 	        profileService.getAllExamsTaken(vm.currentUser().id)
+//	 	          .then(function(response){
+//	 	            vm.data = response.data;
+//	 	          });
+//	 	    }
+	 	    
+	 	    vm.getExamsForUser = function() {
+	 	    	profileService.getExamsForUser(vm.currentUser().id)
+	 	    		.then(function(res) {
+	 	    	
+	 	    			vm.exam = res.data;
+	 	    		})
 	 	    }
-	 	    vm.getAllExamsTaken();
-	 	    console.log(vm.data);
-	   },
-	      
+//	 	    vm.getAllExamsTaken();
+	 	    vm.getExamsForUser();
+	 	  
+	   
+  },
 	    
 	  
 	    template : `
-	      
-	    	<h1>{{$ctrl.currentUser().name}} Profile</h1>
+	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
 	    	<h3>Tests Taken</h3>
-	    	<div ng-hide="!$ctrl.data.length">
-	    	  <h4>Java</h4>	
-		      <ul ng-if="$ctrl.data">
-		    	<li ng-repeat="exam in $ctrl.data">exam id: {{exam.id}}, category: {{exam.category.name}} </li>
+	    	<div >
+	    	  
+		      <ul ng-repeat= "exam in $ctrl.exam">
+		      	<li> Exam ID {{exam.id}}, {{exam.category.name}}</li>	
+		    		<button ng-click="$ctrl.go(exam.id)">Review Exam {{exam.id}}</button>
 		      </ul>
 	      </div>
-	      <div ng-hide="!$ctrl.data2.length">
-	    	   <h4>JavaScript</h4>
-			   <ul>
-		    	<li ng-repeat="exam in $ctrl.data2">exam id: {{exam.id}}, category: {{exam.category.name}} </li>
-			   </ul>
-		   </div>
 	 `
 	  }); 

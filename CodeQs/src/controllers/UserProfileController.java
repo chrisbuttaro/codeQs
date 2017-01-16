@@ -34,8 +34,10 @@ public class UserProfileController {
 //        return userProfileDAO.getUserProfileOfExamsTaken();
 //    }
     
-    @RequestMapping(path="user/{uid}/category/{cid}/exam", method=RequestMethod.GET)
-	public List<Exam> getUserExamByCategory(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid, @PathVariable int cid) {
-		return userProfileDAO.getUserExamByCategory(uid,cid);
+    @RequestMapping(path="user/{uid}/exam", method=RequestMethod.GET)
+	public List<Exam> getAllUserExams(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid) {
+		return userProfileDAO.getAllUserExams(uid);
 	}
-}
+    
+ }
+    

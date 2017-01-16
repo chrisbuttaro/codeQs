@@ -7,13 +7,20 @@ app.factory('profileService', function($http) {
 	vm.profileId;
 	
 	
-	service.getAllExamsTaken = function(uid, cid){
-		console.log(uid + cid);
+	service.getAllExamsTaken = function(uid){
+		console.log(uid);
 		return $http({
 			method : 'GET',
-			url : 'api/user/' + uid + '/category/' + cid + '/exam'
+			url : 'api/user/' + uid +'/exam'
 		})
 	};
+	
+	service.getExamsForUser = function(uid){
+		return $http({
+			method : 'GET',
+			url : 'api/user/' + uid + '/exams' 
+		})
+	}
 	
 	return service;
 });
