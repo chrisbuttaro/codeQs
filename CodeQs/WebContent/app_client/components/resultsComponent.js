@@ -1,41 +1,49 @@
 var app = angular.module("ngCodeQs");
 
 app.component('resultsComponent', {
-	  controller : function(resultsService, authenticationService, $location) {
+	  controller : function(resultsService, testService, authenticationService, $location) {
 	      var vm = this;
 	    
 	      vm.currentUser=authenticationService.currentUser;
 	    
-	 	    vm.data=[]
+	 	    vm.examQs=[]
+	 	    
+	 	    vm.counter=0;
+	 	    
+	 	    vm.updateCounter=function(){
+	 	    	vm.counter++; 
+	 	    }
+	 	    
+	 	  
+	 	    vm.getScore=function(){
+	 	    	vm.score=((vm.examQs.length-vm.counter)/vm.examQs.length)*100;
+	 	    	return vm.score; 
+	 	    }
 	 	    
 	 	    vm.getResultsByExamId = function(){
-	 	        resultsService.getResultsByExamId(vm.currentUser().id,1)
+	 	        resultsService.getResultsByExamId(testService.examId)
 	 	          .then(function(response){
-	 	            vm.data = response.data;
+	 	            vm.examQs = response.data;
+	 	             //vm.getScore; 
 	 	          });
-	 	     
 	 	    }
 	 	    vm.getResultsByExamId();
-	 	    console.log(vm.data);
+	 
 	   },
 	      
-	    
 	  
 	    template : `
-	      
-	    	<h1>{{$ctrl.currentUser().name}} Profile</h1>
-	    	<h3>Results of Test Taken</h3>
-	    	<div ng-hide="!$ctrl.data.length">
-	    	  <h4>Java</h4>	
-		      <ul ng-if="$ctrl.data">
-		    	<li ng-repeat="exam in $ctrl.data">exam id: {{exam.id}}, category: {{exam.category.name}} </li>
-		      </ul>
-	      </div>
-	      <div ng-hide="!$ctrl.data2.length">
-	    	   <h4>JavaScript</h4>
-			   <ul>
-		    	<li ng-repeat="exam in $ctrl.data2">exam id: {{exam.id}}, category: {{exam.category.name}} </li>
-			   </ul>
-		   </div>
+
+	     <div>Score: {{ $ctrl.getScore()}}%</div>
+	    	<table>
+       <tr ng-repeat="examQ in $ctrl.examQs" ng-init="outerIndex = $index">
+         <td><b>{{$index+1}}. {{examQ.question.question}}</b><div ng-if=!examQ.right ng-init="$ctrl.updateCounter()">X</div>
+          <div ng-repeat="answer in examQ.question.answers">
+          <div>{{answer.answer}}</div>
+          </div>
+           <br>
+       </tr>
+     </table>
+	    	 
 	 `
 	  }); 

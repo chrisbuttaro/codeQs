@@ -5,7 +5,6 @@ app.component('testComponent', {
 controller : function($location, testService){
 	var vm=this; 
 	vm.examId = testService.examId;
-	console.log("**************" + vm.examId)
 	
 	vm.go = function () {
   	  $location.path("/results/");

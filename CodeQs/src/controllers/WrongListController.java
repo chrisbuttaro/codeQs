@@ -1,6 +1,6 @@
 package controllers;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import data.WrongListDAO;
-import entities.ExamQuestion;
+import entities.Question;
 
 @RestController
 public class WrongListController {
@@ -19,8 +19,8 @@ public class WrongListController {
 	@Autowired
 	private WrongListDAO wrongListDAO;
 	
-	@RequestMapping(value="user/{uid}/wrongList")
-	public List<ExamQuestion> getUserWrongList(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid) {
-		return wrongListDAO.getWrongListByUser(uid);
+	@RequestMapping(value="user/{uid}/category/{cid}/wrongList")
+	public Set<Question> getUserWrongList(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid, @PathVariable int cid) {
+		return wrongListDAO.getWrongListByUser(uid, cid);
 	}
 }

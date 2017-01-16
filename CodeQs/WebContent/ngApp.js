@@ -33,7 +33,7 @@ angular.module("ngCodeQs", ['ngRoute'])
      	 	        for (var i=0; i<resQuestions.data.length; i++){
      	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
      	 			    	}
-//     	 	       console.log(resQuestions.data[1].answers);
+     	 	       console.log(resQuestions.data);
      		    });
             	  return resQuestions.data;
               });
@@ -45,6 +45,35 @@ angular.module("ngCodeQs", ['ngRoute'])
     	template: '<nav-component></nav-component><profile-component></profile-component>'
     })
     .when('/wrongList',{
-    	template: '<nav-component></nav-component><wrong-list-component></wrong-list-component>'
+    	template: '<nav-component></nav-component><wrong-list-component></wrong-list-component>',
+
+    })
+    .when('/wrongList/:catId', {
+    	template: '<nav-component></nav-component><test-component questions=$resolve.myData></test-component>',
+    	
+    	resolve : {
+  	       
+            myData : function(testService, wrongListService, authenticationService, $route) {
+              var catId = $route.current.params.catId;
+
+              return wrongListService.getWrongListByUser(authenticationService.currentUser().id, catId)
+              .then(function(resQuestions){
+            	  console.log(resQuestions + '******************************')
+                testService.createExam(authenticationService.currentUser().id, catId)
+     		     .then(function(resExam){
+     		    	 testService.examId=resExam.data.id; 
+     		    	 testService.categoryId = catId;
+     		    	console.log("new exam data "+resExam.data.id);
+     	 	         console.log(resQuestions.data.length)
+     	 	        for (var i=0; i<resQuestions.data.length; i++){
+     	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
+     	 			  console.log(resQuestions.data);
+     	 			    	}
+     	 	       console.log(resQuestions.data[1].answers);
+     		    });
+            	  return resQuestions.data;
+              });
+            }
+          }
     })
 	});
