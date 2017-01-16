@@ -26,7 +26,7 @@ app.component('resultsComponent', {
 	      
 	    	<table>
        <tr ng-repeat="examQ in $ctrl.examQs" ng-init="outerIndex = $index">
-         <td><b>{{$index+1}}. {{examQ.question.question}}</b>
+         <td><b>{{$index+1}}. {{examQ.question.question}}</b><div ng-if=!examQ.right>X</div>
           <div ng-repeat="answer in examQ.question.answers">
           <div>{{answer.answer}}</div>
           </div>
