@@ -9,7 +9,7 @@ app.factory('wrongListService', function($http) {
 		console.log(uid);
 		return $http({
 			method : 'GET',
-			url : 'user/' + uid + '/wrongList'
+			url : 'user/' + uid + '/category/' + cid + 'wrongList'
 		})
 	};
 	
