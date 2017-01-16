@@ -1,6 +1,6 @@
 package controllers;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +20,7 @@ public class WrongListController {
 	private WrongListDAO wrongListDAO;
 	
 	@RequestMapping(value="user/{uid}/category/{cid}/wrongList")
-	public List<Question> getUserWrongList(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid, @PathVariable int cid) {
+	public Set<Question> getUserWrongList(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid, @PathVariable int cid) {
 		return wrongListDAO.getWrongListByUser(uid, cid);
 	}
 }
