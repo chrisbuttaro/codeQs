@@ -4,7 +4,7 @@ app.factory('resultsService', function($http) {
 
   var service = {};
 
-service.getResults = function(eid) {
+service.getResultsByExamId = function(eid) {
     return $http({
       method : 'GET',
       url : 'api/exams/' + eid + '/results/'
@@ -48,5 +48,5 @@ service.getResults = function(eid) {
 //	  })
 //	  
 //  }
-//  return service;
+  return service;
 });
