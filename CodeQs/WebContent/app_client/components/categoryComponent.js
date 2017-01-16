@@ -26,17 +26,10 @@ var app = angular.module("ngCodeQs");
   
     template : `
       
-      <h2>Hello {{$ctrl.currentUser().name}}</h2>
-      <button class="btn btn-success btn-lg btn-block" ng-click="$ctrl.go(c.id)" ng-repeat="c in $ctrl.data">{{c.name}}</button>
-    <h1>Category Component</h1>
-     <br>
-     <table>
-       <tr>
-         <th>Category</th>
-       </tr>
-       <tr ng-repeat="category in $ctrl.data">
-         <td>{{category.name}}</td>
-       </tr>
-     </table>
+      <h1>Category</h1>
+      <p>Please choose a category from the list below:</p>
+      <ul>
+      <li ng-repeat="c in $ctrl.data"><a href="#!/test/{{c.id}}" >{{c.name}}</a></li>
+      </ul>
  `
   }); 
