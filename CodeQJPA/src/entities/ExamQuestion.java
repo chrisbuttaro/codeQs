@@ -27,7 +27,6 @@ public class ExamQuestion {
 	// question mapping
 	//@JsonBackReference(value="q_eq")
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name="question_id")
 	private Question question;
 	
