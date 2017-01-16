@@ -5,11 +5,11 @@ app.factory('wrongListService', function($http) {
 	var service = {};
 	var vm = this;
 	
-	service.getWrongListByUser = function(uid){
+	service.getWrongListByUser = function(uid, cid){
 		console.log(uid);
 		return $http({
 			method : 'GET',
-			url : 'user/' + uid + '/category/' + cid + 'wrongList'
+			url : 'api/user/' + uid + '/category/' + cid + '/wrongList'
 		})
 	};
 	
