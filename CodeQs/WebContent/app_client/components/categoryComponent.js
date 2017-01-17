@@ -25,16 +25,16 @@ var app = angular.module("ngCodeQs");
     
   
     template : `
-      <div class="container">
-      <div class="row">
-      <div class = "col-xs-4 col-xs-offset-4">
-      <h1>New Quiz</h1>
-      <p>Choose a category:</p>
-      <ul>
-    	<li ng-repeat="c in $ctrl.data"><a href="#!/test/{{c.id}}" >{{c.name}}</a></li>
-      </ul>
-      </div>
-      </div>
-   	  </div>
- `
+		<div class="container">
+		    <div class="row">
+		        <div class = "col-xs-4 col-xs-offset-4">
+		            <h1>New Quiz</h1>
+		            <p>Choose a category:</p>
+		            <ul>
+		                <li ng-repeat="c in $ctrl.data"><a href="#!/test/{{c.id}}" >{{c.name}}</a></li>
+		            </ul>
+		        </div>
+		    </div>
+		</div>
+   	`
   }); 

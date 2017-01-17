@@ -21,17 +21,21 @@ app.component('wrongListComponent', {
 		    vm.Category(); 
 		    console.log(vm.data);
 	 },
-	    
-	  
 	
 	  template : `
 	    
-	   <h1>Category</h1>
-      <p>Please choose a category from the list below:</p>
-      <ul>
-      <li ng-repeat="c in $ctrl.data"><a href="#!/wrongList/{{c.id}}" >{{c.name}}</a></li>
-      </ul>
-	`,
+		  <div class="container">
+		    <div class="row">
+		        <div class = "col-xs-4 col-xs-offset-4">
+		            <h1>New Quiz</h1>
+		            <p>Choose a category:</p>
+		            <ul>
+		                <li ng-repeat="c in $ctrl.data"><a href="#!/wrongList/{{c.id}}" >{{c.name}}</a></li>
+		            </ul>
+		        </div>
+		    </div>
+		  </div>
+	  `,
 	
 	 bindings : {
     	    questions : "="

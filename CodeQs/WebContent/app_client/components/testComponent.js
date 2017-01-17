@@ -18,21 +18,21 @@ controller : function($location, testService){
 },
 	
   template : `
-  <div class="container">
-	  <div class="row">
-	  <h1>Randomly Generated Test</h1>
-	   <div ng-repeat="question in $ctrl.questions" ng-init="outerIndex = $index">
-	         <b>{{$index+1}}. {{question.question}}</b>
-	         <div ng-repeat="answer in question.answers">
-	            <input type="radio" ng-click="$ctrl.isRight(answer.correct, question.id)" name={{outerIndex}}> </input>{{answer.answer}}
-	         </div>
-	         <br>
-	   </div>
-	<button class="btn btn-lg btn-primary btn-block" ng-click="$ctrl.go()">Submit Exam</button>
+	<div class="container">
+		<div class="row">
+			<h1>Randomly Generated Test</h1>
+			<div ng-repeat="question in $ctrl.questions" ng-init="outerIndex = $index">
+				<b>{{$index+1}}. {{question.question}}</b>
+				<div ng-repeat="answer in question.answers">
+					<input type="radio" ng-click="$ctrl.isRight(answer.correct, question.id)" name={{outerIndex}}> </input>{{answer.answer}}
+				</div>
+				<br>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" ng-click="$ctrl.go()">Submit Exam</button>
+		</div>
 	</div>
-	</div>
-	
-	  `  ,
+   `  ,
+   
      bindings : {
     	    questions : "="
     	  }
