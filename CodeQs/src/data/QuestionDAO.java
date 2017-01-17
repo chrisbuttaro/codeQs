@@ -55,7 +55,7 @@ public class QuestionDAO {
 	}
 	
 	public List<Question> getQuestionsByCategory(int cid) {
-		String query = "select q from Question q where category_id =" + cid;
+		String query = "SELECT q FROM Question q WHERE category_id =" + cid+ " ORDER BY RAND()";
 		return em.createQuery(query, Question.class).setMaxResults(10).getResultList();
 	}
 }

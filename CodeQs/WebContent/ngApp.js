@@ -29,11 +29,11 @@ angular.module("ngCodeQs", ['ngRoute'])
      		    	 testService.examId=resExam.data.id; 
 //     		    	 testService.categoryId = catId;
 //     		    	console.log("new exam data "+resExam.data.id);
-//     	 	         console.log(resQuestions.data.length)
+
      	 	        for (var i=0; i<resQuestions.data.length; i++){
      	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
+     	 			  console.log(resQuestions.data[i].id);
      	 			    	}
-     	 	       console.log(resQuestions.data);
      		    });
             	  return resQuestions.data;
               });
