@@ -56,6 +56,6 @@ public class QuestionDAO {
 	
 	public List<Question> getQuestionsByCategory(int cid) {
 		String query = "select q from Question q where category_id =" + cid;
-		return em.createQuery(query, Question.class).getResultList();
+		return em.createQuery(query, Question.class).setMaxResults(10).getResultList();
 	}
 }
