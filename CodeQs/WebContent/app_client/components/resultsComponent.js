@@ -20,13 +20,13 @@ app.component('resultsComponent', {
 	 	    	return vm.score; 
 	 	    }
 	 	    
-	 	    vm.getResultsByExamId = function(){
-	 	        resultsService.getResultsByExamId(testService.examId)
+	 	    vm.getResultsByExamId = function(id){
+	 	        resultsService.getResultsByExamId(id)
 	 	          .then(function(response){
 	 	            vm.examQs = response.data;
 	 	          });
 	 	    }
-	 	    vm.getResultsByExamId();
+	 	    vm.getResultsByExamId(testService.examId);
 	 
 	   },
 	      
@@ -46,5 +46,8 @@ app.component('resultsComponent', {
             </div>
         </div>
 	    	 
-	 `
+	 `,
+	 bindings : {
+	   eid : '<'
+	   }
 	  }); 
