@@ -31,16 +31,12 @@ angular.module("ngCodeQs", ['ngRoute'])
 
               return testService.getQuestionsByCategory(catId)
               .then(function(resQuestions){
-//            	  console.log(resQuestions)
                 testService.createExam(authenticationService.currentUser().id, catId)
      		     .then(function(resExam){
      		    	 testService.examId=resExam.data.id; 
-//     		    	 testService.categoryId = catId;
-//     		    	console.log("new exam data "+resExam.data.id);
 
      	 	        for (var i=0; i<resQuestions.data.length; i++){
      	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
-     	 			  console.log(resQuestions.data[i].id);
      	 			    	}
      		    });
             	  return resQuestions.data;

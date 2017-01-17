@@ -3,6 +3,7 @@ angular.module('ngCodeQs').factory('testService', function($http, $location) {
 	var vm=this;
 	vm.examId;
 	
+	
 	service.createExam=function(uid, cid){
 		return $http({
 			method : "POST",

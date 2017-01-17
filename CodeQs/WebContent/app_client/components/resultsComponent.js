@@ -35,7 +35,7 @@ app.component('resultsComponent', {
 	     <div class="container">
             <h1>Test Results</h1>
             <h4>Score: {{$ctrl.getScore()}}%</h4>
-            <div ng-repeat="examQ in $ctrl.examQs" ng-init="outerIndex = $index">
+            <div ng-repeat="examQ in $ctrl.examQs | orderBy:'question.id'" ng-init="outerIndex = $index">
                 <b>{{$index+1}}. {{examQ.question.question}}</b>
                 <div ng-if="!examQ.right" ng-init="$ctrl.updateCounter()"></div>
                 <div ng-class="examQ.right ? '.alert alert-success' : '.alert alert-danger'">
