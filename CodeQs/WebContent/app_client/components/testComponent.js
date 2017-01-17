@@ -4,7 +4,8 @@ app.component('testComponent', {
 	
 controller : function($location, testService){
 	var vm=this; 
-	vm.examId = testService.examId;
+	vm.examId = function() {testService.examId};
+	console.log(vm.examId);
 	
 	vm.go = function () {
   	  $location.path("/results/");
@@ -17,19 +18,19 @@ controller : function($location, testService){
 },
 	
   template : `
-    <h1>Test Component</h1>
-    <br>
-	
-	  <table>
-       <tr ng-repeat="question in $ctrl.questions" ng-init="outerIndex = $index">
-         <td><b>{{$index+1}}. {{question.question}}</b>
-          <div ng-repeat="answer in question.answers">
-          <div><input type="radio" ng-click="$ctrl.isRight(answer.correct, question.id)" name={{outerIndex}}> </input>{{answer.answer}}</div>
-          </div>
-           <br>
-       </tr>
-     </table>
-	  <button class="btn btn-success btn-lg btn-block" ng-click="$ctrl.go()">Submit Exam</button>
+  <div class="container">
+	  <div class="row">
+	  <h1>Randomly Generated Test</h1>
+	   <div ng-repeat="question in $ctrl.questions" ng-init="outerIndex = $index">
+	         <b>{{$index+1}}. {{question.question}}</b>
+	         <div ng-repeat="answer in question.answers">
+	            <input type="radio" ng-click="$ctrl.isRight(answer.correct, question.id)" name={{outerIndex}}> </input>{{answer.answer}}
+	         </div>
+	         <br>
+	   </div>
+	<button class="btn btn-lg btn-primary btn-block" ng-click="$ctrl.go()">Submit Exam</button>
+	</div>
+	</div>
 	
 	  `  ,
      bindings : {
