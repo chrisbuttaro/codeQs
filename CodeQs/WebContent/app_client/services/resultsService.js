@@ -5,6 +5,7 @@ app.factory('resultsService', function($http) {
   var service = {};
 
 service.getResultsByExamId = function(eid) {
+	console.log(eid);
     return $http({
       method : 'GET',
       url : 'api/exams/' + eid + '/results/'

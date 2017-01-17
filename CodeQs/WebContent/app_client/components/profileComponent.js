@@ -12,8 +12,8 @@ app.component('profileComponent', {
 	 	    vm.exams =[];
 	 	   
 	 	    vm.go=function(id){
-	 	    	testService.ExamId=id;
-	 	    	console.log(id);
+	 	    	testService.examId=id;
+	 	    	console.log(testService.examId);
 	 	    	var path = "/results/" ;
 	 	    
 	 	      	  $location.path( path );

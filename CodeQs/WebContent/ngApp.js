@@ -11,7 +11,15 @@ angular.module("ngCodeQs", ['ngRoute'])
     	//:id
     	template: '<nav-component></nav-component><category-component></category-component>'
     }).when('/results',{
-    	template: '<nav-component></nav-component><results-component></results-component>'
+    	template: '<nav-component></nav-component><results-component eid="$resolve.eid"></results-component>',
+    	resolve : {
+    		eid : function(testService) {
+    			console.log(testService.ExamId);
+    			var id = testService.ExamId;
+    			console.log(id);
+    			return {'id' : id};
+    		}
+    	}
     })
     .when('/test/:catId',{
     	template: '<nav-component></nav-component><test-component questions=$resolve.myData></test-component>',
