@@ -31,7 +31,6 @@ app.component('resultsComponent', {
 	 
 	   },
 	      
-	  
 	    template : `
 	    <div class="container">
 	    	<h1>Test Results</h1>
