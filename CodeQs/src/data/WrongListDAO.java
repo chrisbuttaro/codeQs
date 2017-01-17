@@ -29,8 +29,6 @@ public class WrongListDAO {
 				wrongListSet.add(question);
 			}
 		}
-		System.out.println("***********WrongList Test *******************");
-//		Set<Question> wrongListSet = new HashSet<>(wrongList); 
 
 		return wrongListSet;
 		
