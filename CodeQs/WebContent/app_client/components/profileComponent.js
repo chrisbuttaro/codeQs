@@ -6,11 +6,10 @@ app.component('profileComponent', {
 	    
 	      vm.currentUser=authenticationService.currentUser;
 	  
-	    
-//	 	    vm.data=[]
 	 	    vm.data2=[]
 	 	    vm.exams =[];
-	 	    vm.averages=[]
+	 	    vm.averages=[];
+	 	    vm.avgObj = {};
 	 	   
 	 	    vm.go=function(id){
 	 	    	testService.examId=id;
@@ -26,17 +25,10 @@ app.component('profileComponent', {
 	 	    	.then(function(response){
 	 	    		vm.data2 = response.data;
 	 	    		console.log(response.data);
-	 	    	});
+	 	    		vm.getAverageByCategory(response);
+	 	    	})
 	 	    }
 	 	    vm.category(); 
-//	 	    
-//	 	    vm.getAllExamsTaken = function(){
-//	 	        profileService.getAllExamsTaken(vm.currentUser().id)
-//	 	          .then(function(response){
-//	 	            vm.data = response.data;
-//	 	          });
-//	 	    }
-	 	    
 	 	    vm.getExamsForUser = function() {
 	 	    	profileService.getExamsForUser(vm.currentUser().id)
 	 	    		.then(function(res) {
@@ -45,10 +37,7 @@ app.component('profileComponent', {
 	 	    		})
 	 	    }
 	 	    
-	 	   vm.getAverageByCategory=function(){
-	 		   
-	 		  categoryService.getCategories()
-	 	    	 .then(function(catResponse){
+	 	   vm.getAverageByCategory=function(catResponse){
 	 	    	  profileService.getExamsForUser(vm.currentUser().id)
 	 	    	  .then(function(examsResponse){
 	 	    	   console.log(examsResponse.data)
@@ -65,24 +54,19 @@ app.component('profileComponent', {
 	 	    		   average=scoreSum/examCount;
 	 	    		   if(!isNaN(average)){
 	 	    		   vm.averages[i]={catName : catResponse.data[i].name, averageQscore : average};
-	 	    		 console.log(vm.averages[i].catName+" Average Score "+vm.averages[i].averageQscore);
+	 	    		   vm.avgObj[catResponse.data[i].name] = average;
+	 	    		 
 	 	    		   }
+	 	    		   //console.log(vm.averages[i].averageQscore);
 	 	    	   }
+	 	    	  console.log(vm.averages[0].catName+" Average Score "+vm.averages[0].averageQscore);
 	 	    	  })
-	 	    	 })
-//	 	    	categoryService.getCategories()
-//	 	    	 .then(function(response){
-//	 	          for(var i=0; i<response.data.length; i++){
-//	 	        	 vm.averages[i]={name : response.data[i].name, averageQscore: 100};
-//	 	        	 console.log(vm.averages[i].name+" Average Score "+vm.averages[i].averageQscore); 
-//	 	          }
-//	 	    	 })
+	 	    	 
+
 	 	    };
 	
-	 	    
-//	 	    vm.getAllExamsTaken();
 	 	    vm.getExamsForUser();
-	 	    vm.getAverageByCategory(); 
+	 	     
 	   
 	  },
 	    
@@ -90,12 +74,11 @@ app.component('profileComponent', {
 	    template : `
 	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
 	    	<h3>Tests Taken</h3>
-
 	    	<h5>Click on a test to review it</h5>
 	  	<div>
 		  	<ul ng-repeat="category in $ctrl.data2" >
 		  		<li>
-		  			{{category.name}}
+		  			{{category.name}}  <div ng-show="$ctrl.avgObj[category.name] != null">Average Score: {{$ctrl.avgObj[category.name]}} %</div>
 		  		</li>
 		  	<ul>
 		  		<li ng-click="$ctrl.go(exam.id)" ng-repeat="exam in $ctrl.exam" ng-if="exam.category.id == category.id"><a href=""> 
