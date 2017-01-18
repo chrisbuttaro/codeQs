@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import entities.Answer;
 import entities.Question;
 
 @Transactional
@@ -57,5 +58,12 @@ public class QuestionDAO {
 	public List<Question> getQuestionsByCategory(int cid) {
 		String query = "SELECT q FROM Question q WHERE category_id =" + cid+ " ORDER BY RAND()";
 		return em.createQuery(query, Question.class).setMaxResults(10).getResultList();
+	}
+
+	public Answer createAnswer(Answer newAnswer) {
+		em.persist(newAnswer);
+		em.flush();
+		
+		return newAnswer;
 	}
 }
