@@ -14,11 +14,15 @@ app.component('resultsComponent', {
 	 	    	vm.counter++; 
 	 	    }
 	 	    
-	 	  
-	 	    vm.getScore=function(){
+	 	   vm.getScore=function(){
 	 	    	vm.score=((vm.examQs.length-vm.counter)/vm.examQs.length)*100;
+	 	    	if(!isNaN(vm.score)){
+	 	    	testService.updateScore(testService.examId, vm.score); 
+	 	    	}
 	 	    	return vm.score; 
 	 	    }
+	 	   vm.getScore();
+	 	    
 	 	    
 	 	    vm.getResultsByExamId = function(id){
 	 	        resultsService.getResultsByExamId(id)

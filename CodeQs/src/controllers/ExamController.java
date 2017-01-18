@@ -53,5 +53,10 @@ public class ExamController {
 	public Collection<Exam> getExamsByUser(@PathVariable("uid") int uid) {
 		return ExamDAO.getExamsForUser(uid);
 	}
+	
+	@RequestMapping(path="exams/{eId}/score/{score}", method=RequestMethod.PUT)
+	public void update(@PathVariable("eId") int eId, @PathVariable("score") int score){
+		ExamDAO.updateScore(eId, score);
+	}
 
 }

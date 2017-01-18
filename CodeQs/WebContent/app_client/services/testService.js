@@ -43,6 +43,13 @@ angular.module('ngCodeQs').factory('testService', function($http, $location) {
 		
 		}) 
 	}
+	
+	service.updateScore=function(eId,score){
+		return $http({
+		method : "PUT",
+		url : 'api/exams/'+eId+'/score/'+score
+		}); 
+	};
 
 	return service;
 });
