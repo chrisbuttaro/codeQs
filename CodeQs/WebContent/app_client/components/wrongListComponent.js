@@ -30,7 +30,7 @@ app.component('wrongListComponent', {
 		            <h1>New Quiz</h1>
 		            <p>Choose a category:</p>
 		            <ul>
-		                <li ng-repeat="c in $ctrl.data"><a href="#!/wrongList/{{c.id}}" >{{c.name}}</a></li>
+		                <li ng-repeat="c in $ctrl.data"><a href="#!/wrongList/{{c.id}}" ng-hide="{{c.exam}}">{{c.name}}</a></li>
 		            </ul>
 		        </div>
 		    </div>
