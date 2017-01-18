@@ -39,7 +39,7 @@ app.component('resultsComponent', {
                 <b>{{$index+1}}. {{examQ.question.question}}</b>
                 <div ng-if="!examQ.right" ng-init="$ctrl.updateCounter()"></div>
                 <div ng-class="examQ.right ? '.alert alert-success' : '.alert alert-danger'">
-                    <div ng-repeat="answer in examQ.question.answers">
+                    <div ng-repeat="answer in examQ.question.answers" ng-class="answer.correct ? 'rightAnswer' : 'wrongAnswer'">
                         {{answer.answer}}
                     </div>
                 </div>
