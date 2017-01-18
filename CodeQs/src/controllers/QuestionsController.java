@@ -10,12 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import data.QuestionDAO;
+import entities.Answer;
 import entities.Question;
 
 @RestController
@@ -29,10 +27,10 @@ public class QuestionsController {
 //        return "pong";
 //    }
 //    
-//    @RequestMapping(path = "", method = RequestMethod.GET)
-//    public List<Question> index(HttpServletRequest req, HttpServletResponse res) {
-//        return questionDAO.index();
-//    }
+    @RequestMapping(path = "question", method = RequestMethod.GET)
+    public List<Question> index(HttpServletRequest req, HttpServletResponse res) {
+        return questionDAO.index();
+    }
 //
 //    @RequestMapping(path = "{id}", method = RequestMethod.GET)
 //    public Question show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
@@ -40,11 +38,18 @@ public class QuestionsController {
 //        return questionDAO.show(id);
 //    }
 //
-//    @RequestMapping(path = "", method = RequestMethod.POST)
-//    public Question create(HttpServletRequest req, HttpServletResponse res, @RequestBody Question t) {
-//        
-//        return questionDAO.create(t);
-//    }
+    @RequestMapping(path = "question", method = RequestMethod.POST)
+    public Question create(HttpServletRequest req, HttpServletResponse res, @RequestBody Question t) {
+        
+        return questionDAO.create(t);
+    }
+    
+    @RequestMapping(path = "question/answer", method = RequestMethod.POST)
+    public Answer createAnswer(HttpServletRequest req, HttpServletResponse res, @RequestBody Answer a) {
+        
+        return questionDAO.createAnswer(a);
+    }
+    
 //
 //    @RequestMapping(path = "{id}", method = RequestMethod.PUT)
 //    public Question update(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody String json) {
