@@ -5,7 +5,7 @@ app.component('profileComponent', {
 	      var vm = this;
 	    
 	      vm.currentUser=authenticationService.currentUser;
-	     
+	  
 	    
 //	 	    vm.data=[]
 //	 	    vm.data2=[]
@@ -78,6 +78,7 @@ app.component('profileComponent', {
 //	 	          }
 //	 	    	 })
 	 	    };
+	
 	 	    
 //	 	    vm.getAllExamsTaken();
 	 	    vm.getExamsForUser();
@@ -89,12 +90,11 @@ app.component('profileComponent', {
 	    template : `
 	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
 	    	<h3>Tests Taken</h3>
-	    	<div >
+	    
 	    	  
 		      <ul ng-repeat= "exam in $ctrl.exam">
 		      	<li> Exam ID {{exam.id}}, {{exam.category.name}}</li>	
 		    		<button ng-click="$ctrl.go(exam.id)">Review Exam {{exam.id}}</button>
 		      </ul>
-	      </div>
 	 `
 	  }); 
