@@ -8,7 +8,7 @@ app.component('profileComponent', {
 	     
 	    
 //	 	    vm.data=[]
-//	 	    vm.data2=[]
+	 	    vm.data2=[]
 	 	    vm.exams =[];
 	 	   
 	 	    vm.go=function(id){
@@ -19,14 +19,14 @@ app.component('profileComponent', {
 	 	      	  $location.path( path );
 	 	    	};
 	 	    
-//	 	    vm.category = function(){
-//	 	    	categoryService.getCategories()
-//	 	    	.then(function(response){
-//	 	    		vm.data2 = response.data;
-//	 	    		console.log(response.data);
-//	 	    	});
-//	 	    }
-//	 	    vm.category(); 
+	 	    vm.category = function(){
+	 	    	categoryService.getCategories()
+	 	    	.then(function(response){
+	 	    		vm.data2 = response.data;
+	 	    		console.log(response.data);
+	 	    	});
+	 	    }
+	 	    vm.category(); 
 //	 	    
 //	 	    vm.getAllExamsTaken = function(){
 //	 	        profileService.getAllExamsTaken(vm.currentUser().id)
@@ -46,18 +46,24 @@ app.component('profileComponent', {
 	 	    vm.getExamsForUser();
 	 	  
 	   
-  },
+	  },
 	    
 	  
 	    template : `
 	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
 	    	<h3>Tests Taken</h3>
-	    	<div >
-	    	  
-		      <ul ng-repeat= "exam in $ctrl.exam">
-		      	<li> Exam ID {{exam.id}}, {{exam.category.name}}</li>	
-		    		<button ng-click="$ctrl.go(exam.id)">Review Exam {{exam.id}}</button>
-		      </ul>
-	      </div>
+	    	<h5>Click on a test to review it</h5>
+	  	<div>
+		  	<ul ng-repeat="category in $ctrl.data2" >
+		  		<li>
+		  			{{category.name}}
+		  		</li>
+		  	<ul>
+		  		<li ng-click="$ctrl.go(exam.id)" ng-repeat="exam in $ctrl.exam" ng-if="exam.category.id == category.id"><a href=""> 
+		  			Review Exam {{exam.id}}</a>
+		  		</li>
+		  	</ul>
+	    	</ul>
+	  	</div>
 	 `
 	  }); 

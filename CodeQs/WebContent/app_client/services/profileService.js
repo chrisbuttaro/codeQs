@@ -20,7 +20,9 @@ app.factory('profileService', function($http) {
 			method : 'GET',
 			url : 'api/user/' + uid + '/exams' 
 		})
-	}
+	};
+	
+
 	
 	return service;
 });
