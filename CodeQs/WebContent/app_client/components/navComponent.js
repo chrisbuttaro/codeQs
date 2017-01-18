@@ -39,6 +39,7 @@ app.component('navComponent', {
             <li><a href="#!/wrongList">Wrong Answer Quiz</a></li>
           </ul>
         </li>
+		<li class="active"><a href="#!/quesiton">Add A Question <span class="sr-only">(current)</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a>Logged in as: {{$ctrl.currentUser().name}}</a></li>

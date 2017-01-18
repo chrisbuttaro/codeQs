@@ -31,7 +31,6 @@ public class Question {
 	//@JsonBackReference("question-category")
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	@JsonIgnore
 	private Category category;
 	
 
