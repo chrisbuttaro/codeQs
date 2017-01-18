@@ -43,17 +43,13 @@ public class CategoryController {
         return CategoryDAO.show(id);
     }
 
-    
-
-    
     @RequestMapping(path="", method=RequestMethod.POST)
     public Category create(@RequestBody Category newCategory) {
         
         return CategoryDAO.create(newCategory);
         
     }
-
-    
+   
     @RequestMapping(path="/{id}", method=RequestMethod.DELETE)
     public Category destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
         return CategoryDAO.destroy(id);
