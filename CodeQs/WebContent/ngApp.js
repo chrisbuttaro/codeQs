@@ -31,16 +31,12 @@ angular.module("ngCodeQs", ['ngRoute'])
 
               return testService.getQuestionsByCategory(catId)
               .then(function(resQuestions){
-//            	  console.log(resQuestions)
                 testService.createExam(authenticationService.currentUser().id, catId)
      		     .then(function(resExam){
      		    	 testService.examId=resExam.data.id; 
-//     		    	 testService.categoryId = catId;
-//     		    	console.log("new exam data "+resExam.data.id);
 
      	 	        for (var i=0; i<resQuestions.data.length; i++){
      	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
-     	 			  console.log(resQuestions.data[i].id);
      	 			    	}
      		    });
             	  return resQuestions.data;
@@ -73,10 +69,14 @@ angular.module("ngCodeQs", ['ngRoute'])
      		    	 testService.categoryId = catId;
      		    	console.log("new exam data "+resExam.data.id);
      	 	         console.log(resQuestions.data.length)
+     	 	         if (resQuestions.data.length === 0) {
+     	 	        	 return [];
+     	 	         }
      	 	        for (var i=0; i<resQuestions.data.length; i++){
      	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
      	 			  console.log(resQuestions.data);
      	 			    	}
+     	 	         console.log('got here');
      	 	       console.log(resQuestions.data[1].answers);
      		    });
             	  return resQuestions.data;
