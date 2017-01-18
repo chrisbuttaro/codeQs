@@ -10,6 +10,7 @@ app.component('profileComponent', {
 //	 	    vm.data=[]
 //	 	    vm.data2=[]
 	 	    vm.exams =[];
+	 	    vm.averages=[]
 	 	   
 	 	    vm.go=function(id){
 	 	    	testService.examId=id;
@@ -18,6 +19,7 @@ app.component('profileComponent', {
 	 	    
 	 	      	  $location.path( path );
 	 	    	};
+	 	    	
 	 	    
 //	 	    vm.category = function(){
 //	 	    	categoryService.getCategories()
@@ -42,9 +44,44 @@ app.component('profileComponent', {
 	 	    			vm.exam = res.data;
 	 	    		})
 	 	    }
+	 	    
+	 	   vm.getAverageByCategory=function(){
+	 		   
+	 		  categoryService.getCategories()
+	 	    	 .then(function(catResponse){
+	 	    	  profileService.getExamsForUser(vm.currentUser().id)
+	 	    	  .then(function(examsResponse){
+	 	    	   console.log(examsResponse.data)
+	 	    	   for(var i=0; i<catResponse.data.length; i++){
+	 	    		  var examCount=0;
+	 	    		  var scoreSum=0;
+	 	    		  var average=0;
+	 	    		   for(var j=0; j<examsResponse.data.length; j++){
+	 	    			   if(catResponse.data[i].id===examsResponse.data[j].category.id){
+	 	    				 examCount++; 
+	 	    				 scoreSum += examsResponse.data[j].score;
+	 	    			   }
+	 	    		   }
+	 	    		   average=scoreSum/examCount;
+	 	    		   if(!isNaN(average)){
+	 	    		   vm.averages[i]={catName : catResponse.data[i].name, averageQscore : average};
+	 	    		 console.log(vm.averages[i].catName+" Average Score "+vm.averages[i].averageQscore);
+	 	    		   }
+	 	    	   }
+	 	    	  })
+	 	    	 })
+//	 	    	categoryService.getCategories()
+//	 	    	 .then(function(response){
+//	 	          for(var i=0; i<response.data.length; i++){
+//	 	        	 vm.averages[i]={name : response.data[i].name, averageQscore: 100};
+//	 	        	 console.log(vm.averages[i].name+" Average Score "+vm.averages[i].averageQscore); 
+//	 	          }
+//	 	    	 })
+	 	    };
+	 	    
 //	 	    vm.getAllExamsTaken();
 	 	    vm.getExamsForUser();
-	 	  
+	 	    vm.getAverageByCategory(); 
 	   
   },
 	    

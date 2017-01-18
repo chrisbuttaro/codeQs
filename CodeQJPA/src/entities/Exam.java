@@ -27,7 +27,7 @@ public class Exam {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@JsonIgnore
+	
 	private Integer score; 
 	
 	@ManyToOne
@@ -96,11 +96,11 @@ public class Exam {
 		return user;
 	}
 
-	public int getScore() {
+	public Integer getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(Integer score) {
 		this.score = score;
 	}
 
@@ -110,7 +110,9 @@ public class Exam {
 
 	public int getId() {
 		return id;
-	};
+	}
+
+	
 	
 	
 
