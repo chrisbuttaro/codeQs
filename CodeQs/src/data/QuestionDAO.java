@@ -36,10 +36,12 @@ public class QuestionDAO {
 		Category category = em.find(Category.class, cid);
 		User user = em.find(User.class, uid);
 		newQuestion.setCategory(category);
-		newQuestion.setQuestion(newQuestion.getQuestion());
 		newQuestion.setUser(user);
-		newQuestion.setAnswers(newQuestion.getAnswers());
-		
+		for (Answer a : newQuestion.getAnswers()) {
+			a.setQuestion(newQuestion);
+		}
+		System.out.println(newQuestion.getAnswers().size());
+		System.out.println(newQuestion.getAnswers().get(0).getQuestion()); 
 		em.persist(newQuestion);
 		em.flush();
 		
