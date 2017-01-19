@@ -1,15 +1,16 @@
 var app = angular.module("ngCodeQs");
 
 app.component('questionComponent', {
-	  controller : function(quesitonService, authenticationService, categoryService, $location) {
+	  controller : function(questionService, authenticationService, categoryService, $location) {
 	      var vm = this;
 	    
 	      vm.currentUser=authenticationService.currentUser;
 	     
 	    
-	 	    vm.question =[];
+	 	    vm.question = {};
 	 	    vm.answer =[];
-	 	    vm.cat=[]
+	 	    vm.cat=[];
+	 	    vm.catSelected;
 	 	    
 	 	    vm.category = function(){
 	 	        categoryService.getCategories()
@@ -21,45 +22,50 @@ app.component('questionComponent', {
 	 	    vm.category();
 	 	    
 	 	    
-	 	   vm.createQuestion = function(uid,cid){
-	 	    	questionService.createQuestion()
-	 	    		.then(function(res){
-	 	    		vm.question = res.data;
-	 	   		})
-	 	   	}
-	 	   vm.createQuestion(uid,cid);
+	 	   vm.createQuestion = questionService.createQuestion;
+	 	    	
+	 	   	
 	  
-	 	  vm.createAnswer = function(qid){
-	 	    	questionService.createAnswer()
-	 	    		.then(function(res){
-	 	    		vm.answer = res.data;
-	 	   		})
-	 	   	}
-	 	   vm.createAnswer(qid);  
+//	 	  vm.createAnswer = function(qid){
+//	 	    	questionService.createAnswer()
+//	 	    		.then(function(res){
+//	 	    		vm.answer = res.data;
+//	 	   		})
+//	 	   	}
+//	 	   vm.createAnswer(qid);  
 	 	   
 	  },
 	  
 	  template : `
 	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
-	    	<h3>Would you like to create a question</h3>
-	    	<div>
-	    		<select>
-		  			<option ng-repeat="cat in $ctrl.category">{{x}}</option>
-		  		</select>
-	    	
-		      <ul ng-repeat= "question in $ctrl.createQuestion">
-			    <li>
-			      	<label for="createQuestion">Text:</label>
-			  			<input id="createQuestion" type="text" ng-model="questionValue" />
-			  			<span class="valueItems"><strong>Value:</strong> {{question.question}}</span><br />
-			  		
-			  		<label for="customValCheck">Checkbox with custom values:</label>
-			  			<input id="customValCheck" type="checkbox" ng-model="customValCheckValue"
-	           				ng-true-value="right" ng-false-value="wrong"/>
-			  		<span class="valueItems"><strong>Value:</strong> {{customValCheckValue}}</span>
-			  	</li>
-		      </ul>
-	      </div>
+<h3>Would you like to create a question</h3>
+<div>
+   <select>
+      <option ng-model="$ctrl.catSelected" ng-repeat="cat in $ctrl.cat">{{cat.name}}</option>
+   </select>
+   {{$ctrl.catSelected}}
+  
+         <label for="createQuestion">Enter Question:</label>
+         <input type="text" ng-model="$ctrl.question.question" />
+         <label for="createAnswer">First Answer:</label>
+         <input type="text" ng-model="$ctrl.question.answers[0]" />
+         <label for="customValCheck">Is this the correct answer:</label>
+         <input type="text" ng-model="$ctrl.question.answers[1]" />
+         <label for="customValCheck">Is this the correct answer:</label>
+         <input type="text" ng-model="$ctrl.question.answers[2]" />
+         <label for="customValCheck">Is this the correct answer:</label>
+         <input type="text" ng-model="$ctrl.question.answers[3]" />
+         <label for="customValCheck">Is this the correct answer:</label>
+         <p>
+      	{{$ctrl.question.question}}
+      	{{$ctrl.question.answers[0]}}
+      	{{$ctrl.question.answers[1]}}
+      	{{$ctrl.question.answers[2]}}
+      	{{$ctrl.question.answers[3]}}
+      	{{$ctrl.question.answers[0].correct}}
+		</p>
+   <button ng-click="$ctrl.createQuestion($ctrl.question, $ctrl.currentUser.id, $ctrl.catSelected.id">Submit</button>
+</div>
 	 `
 
  });

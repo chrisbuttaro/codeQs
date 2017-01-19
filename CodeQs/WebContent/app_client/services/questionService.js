@@ -6,14 +6,14 @@ app.factory('questionService', function($http) {
 	var vm = this;	
 
 
-service.createQuestion=function(uid, cid){
+service.createQuestion=function(quest, uid, cid){
 		return $http({
 		method : "POST",
-		data : {},
+		data : {question : quest},
 		url : 'api/user/'+uid+'/category/'+cid+'/question',
-//		headers : {
-//		    'Content-Type' : 'application/json'
-//		  }
+		headers : {
+		    'Content-Type' : 'application/json'
+		  }
 	}) 
 	};
 	
