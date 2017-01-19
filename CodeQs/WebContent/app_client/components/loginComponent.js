@@ -5,7 +5,6 @@ app.component('loginComponent', {
     var vm = this;
     vm.login=function(user){authenticationService.login(user)}; 
     vm.user={};
-  
     },
     
     template: `
@@ -26,6 +25,5 @@ app.component('loginComponent', {
 		      <a href="#!/register">New User?</a>
 		    </form>
     	</div>
-  `
-   
-      });
+    `
+    });

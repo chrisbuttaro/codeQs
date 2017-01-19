@@ -5,15 +5,12 @@ app.component('testComponent', {
 controller : function($location, testService){
 	var vm=this; 
 	vm.examId = function() {testService.examId};
-	console.log(vm.examId);
-	
 	
 	vm.go = function () {
   	  $location.path("/results/");
   	};
   	
   	vm.isRight=function(ansCorrect, Qid){
-  		console.log(ansCorrect+" quesitonid "+Qid+" examid"+testService.examId); 
   		testService.updateTestQ(ansCorrect, Qid, testService.examId)
   	};
 },

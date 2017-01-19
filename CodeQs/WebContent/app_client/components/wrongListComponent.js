@@ -6,7 +6,6 @@ app.component('wrongListComponent', {
 	    
 	    vm.exams = [];
 	    vm.categories = [];
-	    
 	   
 	    vm.go = function (id) {
 	  	  var path = "/wrongList/" + id;
@@ -18,14 +17,9 @@ app.component('wrongListComponent', {
  	        profileService.getExamsForUser(vm.currentUser().id)
  	          .then(function(response){
  	            vm.exams = response.data;
- 	            console.log("response data" + response.data);
- 	            console.log(vm.exams);
  	          });
  	    }
 	    vm.getExamsForUser();
-	    
-	    console.log("here");
-	    console.log("****************" + vm.exams);
 	  
 		    vm.data=[]
 		    
@@ -33,12 +27,10 @@ app.component('wrongListComponent', {
 		        categoryService.getCategories()
 		          .then(function(response){
 		            vm.data = response.data;
-		    	    console.log(response.data);
 		    	    vm.getCategories(response);
 		          });
 		    }
 		    vm.Category(); 
-		    console.log(vm.data);
 		    
 		    vm.getCategories=function(catResponse){
 		    	var skippedIfCounter = 0;
@@ -46,7 +38,6 @@ app.component('wrongListComponent', {
                 .then(function(examsResponse){
                  for(var i=0; i<catResponse.data.length; i++){
                 	 skippedIfCounter++;
-                	 console.log("in for loop " + skippedIfCounter);
                     var examCount=0;
                      for(var j=0; j<examsResponse.data.length; j++){
                          if(catResponse.data[i].id===examsResponse.data[j].category.id){
@@ -56,9 +47,7 @@ app.component('wrongListComponent', {
                      }
                      if(examCount > 0){
                     	 skippedIfCounter--;
-                    	 console.log("in if " + skippedIfCounter );
                      vm.categories[i-skippedIfCounter]=catResponse.data[i];
-                     console.log(vm.categories[i])
                      }
                  }
                })

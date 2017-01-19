@@ -11,29 +11,24 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	//@JsonManagedReference("question-category")
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
 	@JsonIgnore
 	private List<Question> questions;
-	
-//	@OneToMany
+
 	@JsonIgnore
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="category")
-//	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
 	private Set<Exam> exams;
-	
+
 	public Set<Exam> getExams() {
 		return exams;
 	}
@@ -42,8 +37,9 @@ public class Category {
 		this.exams = exams;
 	}
 
-	public Category() {};
-	
+	public Category() {
+	};
+
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -52,7 +48,6 @@ public class Category {
 		this.questions = questions;
 	}
 
-	
 	public Category(int id, String name) {
 		this.id = id;
 		this.name = name;
@@ -61,11 +56,13 @@ public class Category {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public int getId() {
 		return id;
 	}
-	
+
 }

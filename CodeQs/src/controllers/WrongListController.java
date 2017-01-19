@@ -15,12 +15,13 @@ import entities.Question;
 
 @RestController
 public class WrongListController {
-	
+
 	@Autowired
 	private WrongListDAO wrongListDAO;
-	
-	@RequestMapping(value="user/{uid}/category/{cid}/wrongList")
-	public Set<Question> getUserWrongList(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid, @PathVariable int cid) {
+
+	@RequestMapping(value = "user/{uid}/category/{cid}/wrongList")
+	public Set<Question> getUserWrongList(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid,
+			@PathVariable int cid) {
 		return wrongListDAO.getWrongListByUser(uid, cid);
 	}
 }

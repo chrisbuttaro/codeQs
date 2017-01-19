@@ -11,18 +11,17 @@ import org.junit.Before;
 import org.junit.Test;
 
 import entities.Category;
-import entities.Question;
 
 public class CategoryTest {
 
 	private EntityManagerFactory emf;
-    private EntityManager em;
+	private EntityManager em;
 
-    @Before
-    public void setUp() throws Exception {
-        emf = Persistence.createEntityManagerFactory("CodeQJPA");
-        em = emf.createEntityManager();
-    }
+	@Before
+	public void setUp() throws Exception {
+		emf = Persistence.createEntityManagerFactory("CodeQJPA");
+		em = emf.createEntityManager();
+	}
 
 	@Test
 	public void test() {

@@ -55,22 +55,19 @@ public class ExamDAO {
 		return e;
 
 	}
-	
+
 	public Collection<Exam> getExamsForUser(int userId) {
-		Collection<Exam> exams = em.createQuery("SELECT e FROM Exam e WHERE user.id = :uid")
-				.setParameter("uid", userId)
+		Collection<Exam> exams = em.createQuery("SELECT e FROM Exam e WHERE user.id = :uid").setParameter("uid", userId)
 				.getResultList();
 		return exams;
 	}
-	
-	public void updateScore(int eId, int score){
-		Exam e=em.find(Exam.class, eId);
+
+	public void updateScore(int eId, int score) {
+		Exam e = em.find(Exam.class, eId);
 		e.setScore(score);
 		em.persist(e);
 		em.flush();
-		
+
 	}
-	
-	
 
 }

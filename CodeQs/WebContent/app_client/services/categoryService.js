@@ -7,6 +7,5 @@ angular.module('ngCodeQs').factory('categoryService', function($http) {
 			url : 'api/category'
 		}) 
 	};
-
 	return service;
 });

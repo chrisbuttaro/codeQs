@@ -15,11 +15,11 @@ import entities.ExamQuestion;
 public class ResultsDAO {
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public List<ExamQuestion> getResultsByTest(int examId) {
 		String query = "SELECT eq FROM ExamQuestion eq where test_id =" + examId;
 		List<ExamQuestion> examQuestions = em.createQuery(query, ExamQuestion.class).getResultList();
-		System.out.println("***exam questions***"+examQuestions);
+		System.out.println("***exam questions***" + examQuestions);
 		return examQuestions;
 	}
 }

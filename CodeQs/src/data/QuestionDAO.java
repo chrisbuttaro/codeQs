@@ -18,16 +18,14 @@ import entities.User;
 public class QuestionDAO {
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public List<Question> index() {
 		String query = "select q from Question q";
 		return em.createQuery(query, Question.class).getResultList();
 	}
-	
+
 	public Question show(int id) {
-//		System.out.println("in DAO");
-//		System.out.println(em.find(Question.class, id));
-		Question questionUser = em.find(Question.class,  id);
+		Question questionUser = em.find(Question.class, id);
 		System.out.println("**************************" + questionUser.getUser());
 		return questionUser;
 	}
@@ -41,32 +39,28 @@ public class QuestionDAO {
 			a.setQuestion(newQuestion);
 		}
 		System.out.println(newQuestion.getAnswers().size());
-		System.out.println(newQuestion.getAnswers().get(0).getQuestion()); 
+		System.out.println(newQuestion.getAnswers().get(0).getQuestion());
 		em.persist(newQuestion);
 		em.flush();
-		
+
 		return newQuestion;
 	}
 
 	public Question update(int id, Question q) {
 		Question Question = em.find(Question.class, id);
-//		System.out.println(em.find(Question.class, id));
-//		Question.setTask(q.getTask());
-//		Question.setCompleted(q.getCompleted());
-//		Question.setDescription(q.getDescription());
 		em.persist(Question);
 		em.flush();
 		return Question;
 	}
 
-	public Question destroy(int id) {	
+	public Question destroy(int id) {
 		Question Question = em.find(Question.class, id);
 		em.remove(Question);
 		return Question;
 	}
-	
+
 	public List<Question> getQuestionsByCategory(int cid) {
-		String query = "SELECT q FROM Question q WHERE category_id =" + cid+ " ORDER BY RAND()";
+		String query = "SELECT q FROM Question q WHERE category_id =" + cid + " ORDER BY RAND()";
 		return em.createQuery(query, Question.class).setMaxResults(10).getResultList();
 	}
 
@@ -74,10 +68,10 @@ public class QuestionDAO {
 		newAnswer.setQuestion(question);
 		newAnswer.setAnswer(answer);
 		newAnswer.setCorrect(isCorrect);
-		
+
 		em.persist(newAnswer);
 		em.flush();
-		
+
 		return newAnswer;
 	}
 }

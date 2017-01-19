@@ -9,8 +9,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 //entity
 @Entity
 @Table(name = "test_question")
@@ -18,21 +16,18 @@ public class ExamQuestion {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	// exam mapping
+
 	@ManyToOne
-	@JoinColumn(name="test_id")
+	@JoinColumn(name = "test_id")
 	private Exam exam;
-	
-	// question mapping
-	//@JsonBackReference(value="q_eq")
+
 	@ManyToOne
-	@JoinColumn(name="question_id")
+	@JoinColumn(name = "question_id")
 	private Question question;
-	
-	@Column(name="is_right")
+
+	@Column(name = "is_right")
 	private boolean isRight;
-	
+
 	public ExamQuestion() {
 	}
 
@@ -52,8 +47,6 @@ public class ExamQuestion {
 		this.question = question;
 	}
 
-
-
 	public boolean isRight() {
 		return isRight;
 	}
@@ -65,5 +58,5 @@ public class ExamQuestion {
 	public int getId() {
 		return id;
 	};
-	
+
 }

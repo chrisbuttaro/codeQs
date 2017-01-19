@@ -6,7 +6,6 @@ app.component('questionComponent', {
 	    
 	      vm.currentUser=authenticationService.currentUser;
 	     
-	    
 	 	    vm.question= {
 	 	    		"answers": []
 	 	    };
@@ -18,25 +17,12 @@ app.component('questionComponent', {
 	 	        categoryService.getCategories()
 	 	          .then(function(response){
 	 	            vm.cat = response.data;
-	 	    	    console.log(response.data);
-	 	    	    console.log(vm.currentUser.id);
 	 	          });
 	 	    }
 	 	    vm.category();
 	 	    
-	 	    
 	 	   vm.createQuestion = questionService.createQuestion;
-	 	    	
-	 	   	
-	  
-//	 	  vm.createAnswer = function(qid){
-//	 	    	questionService.createAnswer()
-//	 	    		.then(function(res){
-//	 	    		vm.answer = res.data;
-//	 	   		})
-//	 	   	}
-//	 	   vm.createAnswer(qid);  
-	 	   
+	 	    		 	   
 	  },
 	  
 	  template : `

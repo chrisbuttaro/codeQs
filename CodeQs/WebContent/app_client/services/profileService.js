@@ -6,9 +6,7 @@ app.factory('profileService', function($http) {
 	var vm = this;
 	vm.profileId;
 	
-	
 	service.getAllExamsTaken = function(uid){
-		console.log(uid);
 		return $http({
 			method : 'GET',
 			url : 'api/user/' + uid +'/exam'
@@ -21,8 +19,5 @@ app.factory('profileService', function($http) {
 			url : 'api/user/' + uid + '/exams' 
 		})
 	};
-	
-
-	
 	return service;
 });

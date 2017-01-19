@@ -14,69 +14,37 @@ import org.springframework.web.bind.annotation.RestController;
 
 import data.QuestionDAO;
 import entities.Answer;
-import entities.Category;
 import entities.Question;
-import entities.User;
 
 @RestController
 public class QuestionsController {
-    
-    @Autowired
-    private QuestionDAO questionDAO;
-    
-//    @RequestMapping(value="ping", method=RequestMethod.GET)
-//    public String ping(){
-//        return "pong";
-//    }
-//    
-    @RequestMapping(path = "question", method = RequestMethod.GET)
-    public List<Question> index(HttpServletRequest req, HttpServletResponse res) {
-        return questionDAO.index();
-    }
-//
-//    @RequestMapping(path = "{id}", method = RequestMethod.GET)
-//    public Question show(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
-//        System.out.println("in controller");
-//        return questionDAO.show(id);
-//    }
-//
-    @RequestMapping(path = "user/{uid}/category/{cid}/question", method = RequestMethod.POST)
-    public Question create(HttpServletRequest req, HttpServletResponse res, @RequestBody Question newQuestion, @PathVariable int cid, @PathVariable int uid) {
-        
-        return questionDAO.create(newQuestion, cid, uid);
-    }
-    
-    @RequestMapping(path = "question/answer", method = RequestMethod.POST)
-    public Answer createAnswer(HttpServletRequest req, HttpServletResponse res, @RequestBody Answer newAnswer, Question question, String answer, Boolean isCorrect) {
-        
-        return questionDAO.createAnswer(newAnswer, question, answer, isCorrect);
-    }
-    
-//
-//    @RequestMapping(path = "{id}", method = RequestMethod.PUT)
-//    public Question update(HttpServletRequest req, HttpServletResponse res, @PathVariable int id, @RequestBody String json) {
-//        ObjectMapper om = new ObjectMapper();
-//        Question t = null;
-//        System.out.println("update");
-//        System.out.println(json);
-//        try {
-//            t = om.readValue(json, Question.class);
-//        }catch (Exception e) {
-//            System.out.println(e);
-//        }
-//
-//        return questionDAO.update(id, t);
-//    }
-//
-//    @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
-//    public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int id) {
-//
-//        questionDAO.destroy(id);
-//    }
-    
-    @RequestMapping(path = "category/{cid}/questions", method = RequestMethod.GET)
-    public List<Question> getQuestionsByCategory(HttpServletRequest req, HttpServletResponse res, @PathVariable int cid) {
-    	return questionDAO.getQuestionsByCategory(cid);
-    }
-    
+
+	@Autowired
+	private QuestionDAO questionDAO;
+
+	@RequestMapping(path = "question", method = RequestMethod.GET)
+	public List<Question> index(HttpServletRequest req, HttpServletResponse res) {
+		return questionDAO.index();
+	}
+
+	@RequestMapping(path = "user/{uid}/category/{cid}/question", method = RequestMethod.POST)
+	public Question create(HttpServletRequest req, HttpServletResponse res, @RequestBody Question newQuestion,
+			@PathVariable int cid, @PathVariable int uid) {
+
+		return questionDAO.create(newQuestion, cid, uid);
+	}
+
+	@RequestMapping(path = "question/answer", method = RequestMethod.POST)
+	public Answer createAnswer(HttpServletRequest req, HttpServletResponse res, @RequestBody Answer newAnswer,
+			Question question, String answer, Boolean isCorrect) {
+
+		return questionDAO.createAnswer(newAnswer, question, answer, isCorrect);
+	}
+
+	@RequestMapping(path = "category/{cid}/questions", method = RequestMethod.GET)
+	public List<Question> getQuestionsByCategory(HttpServletRequest req, HttpServletResponse res,
+			@PathVariable int cid) {
+		return questionDAO.getQuestionsByCategory(cid);
+	}
+
 }

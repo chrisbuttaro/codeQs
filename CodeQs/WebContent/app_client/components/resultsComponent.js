@@ -12,12 +12,6 @@ app.component('resultsComponent', {
 	 	    vm.examId=testService.examId;
 	 	    vm.score;
 	 	    
-	 	    
-	 	    
-	 	   
-	 	   
-	 	    
-	 	    
 	 	    vm.getResultsByExamId = function(id){
 	 	        resultsService.getResultsByExamId(id)
 	 	          .then(function(response){
@@ -32,9 +26,7 @@ app.component('resultsComponent', {
 	 	          });
 	 	    }
 	 	   vm.getResultsByExamId(vm.examId);
-	 
 	   },
-	      
 	  
 	    template : `
 	     <div class="container">
@@ -52,6 +44,5 @@ app.component('resultsComponent', {
                 </div>
             </div>
         </div>
-	    	 
 	 `
 	  }); 
