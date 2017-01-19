@@ -67,7 +67,6 @@ app.component('profileComponent', {
 	 	    };
 	
 	 	    vm.getExamsForUser();
-<<<<<<< HEAD
 	 	    
 	 	    vm.showCategory = function(ex,c) {
 	 	    	var show = false;
@@ -81,10 +80,6 @@ app.component('profileComponent', {
 	 	    	return show;
 	 	    }
 	 	    
-=======
-	 	     
-	   
->>>>>>> d8a51da523c47083bd5f256b1578802b029ce815
 	  },
 	    
 	  
@@ -94,13 +89,13 @@ app.component('profileComponent', {
 	    	<h5>Click on a test to review it</h5>
 	  	<div>
 		  	<ul ng-repeat="category in $ctrl.data2" >
-<<<<<<< HEAD
 		  		<li ng-show="$ctrl.showCategory($ctrl.exams, category)">
 		  			{{category.name}}
-=======
+
+
 		  		<li>
 		  			{{category.name}}  <div ng-show="$ctrl.avgObj[category.name] != null">Average Score: {{$ctrl.avgObj[category.name]}} %</div>
->>>>>>> d8a51da523c47083bd5f256b1578802b029ce815
+
 		  		</li>
 		  	<ul>
 		  		<li ng-click="$ctrl.go(exam.id)" ng-repeat="exam in $ctrl.exams" ng-if="exam.category.id == category.id"><a href=""> 
