@@ -38,14 +38,14 @@ public class ExamDAO {
 		return existingExam;
 	}
 
-	public Exam create(Exam exam, int id, int cid) {
+	public Exam create(Exam ExamJson, int id, int cid) {
 		User u = em.find(User.class, id);
 		Category category = em.find(Category.class, cid);
-		exam.setUser(u);
-		exam.setCategory(category);
-		em.persist(exam);
+		ExamJson.setUser(u);
+		ExamJson.setCategory(category);
+		em.persist(ExamJson);
 		em.flush();
-		return exam;
+		return ExamJson;
 	}
 
 	public Exam destroy(int id) {
@@ -62,5 +62,15 @@ public class ExamDAO {
 				.getResultList();
 		return exams;
 	}
+	
+	public void updateScore(int eId, int score){
+		Exam e=em.find(Exam.class, eId);
+		e.setScore(score);
+		em.persist(e);
+		em.flush();
+		
+	}
+	
+	
 
 }
