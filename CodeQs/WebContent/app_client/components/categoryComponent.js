@@ -29,6 +29,7 @@ var app = angular.module("ngCodeQs");
 		    <div class="row">
 		        <div class = "col-xs-4 col-xs-offset-4">
 		            <h1>New Quiz</h1>
+		            <hr>
 		            <p><em>Choose a category to randomly generate an exam:</em></p>
 		            <hr>
 		            <ul>

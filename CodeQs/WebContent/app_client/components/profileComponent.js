@@ -89,6 +89,7 @@ app.component('profileComponent', {
 	    <div class = "col-xs-4 col-xs-offset-4">
 	    <div class="center">
 	    	<h1>Profile</h1>
+	    	<hr>
 	    	<h3>{{$ctrl.currentUser().name}}'s previous quizzes</h3>
 	    	<p><em>Click on a Quiz to review it:</em></p>
 	    </div>

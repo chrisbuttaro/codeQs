@@ -40,48 +40,46 @@ app.component('questionComponent', {
 	  },
 	  
 	  template : `
-	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
-<h3>Would you like to create a question</h3>
-<div>
-   <!-- <select
-     ng-model="$ctrl.catSelected" [ng-repeat="cat in $ctrl.cat"]>{{cat.name}}</option>
-   </select> -->
-<select ng-model="$ctrl.catSelected" ng-options="cat.name for cat in $ctrl.cat">
-</select>   
-
-   {{$ctrl.catSelected}}
-   
-   
-   
-
-  
-         <label for="createQuestion">Enter Question:</label>
-         <input type="text" ng-model="$ctrl.question.question" />
-         <label for="createAnswer">First Answer:</label>
-         <input type="text" ng-model="$ctrl.question.answers[0].answer" />
-         <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[0].correct" />
-         <label for="customValCheck">Is this the correct answer:</label>
-         <input type="text" ng-model="$ctrl.question.answers[1].answer" />
-         <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[1].correct" />
-         <label for="customValCheck">Is this the correct answer:</label>
-         <input type="text" ng-model="$ctrl.question.answers[2].answer" />
-         <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[2].correct" />
-         <label for="customValCheck">Is this the correct answer:</label>
-         <input type="text" ng-model="$ctrl.question.answers[3].answer" />
-         <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[3].correct" />
-         <label for="customValCheck">Is this the correct answer:</label>
-         <p>
-        <!--	{{$ctrl.question.question}}
-      	{{$ctrl.question.answers[0]}}
-      	{{$ctrl.question.answers[1]}}
-      	{{$ctrl.question.answers[2]}}
-      	{{$ctrl.question.answers[3]}}
-      	{{$ctrl.question.answers[0].correct}}-->
-      	{{$ctrl.question}} 
-		</p>
-		$ctrl.question
-  <button ng-click="$ctrl.createQuestion($ctrl.question, $ctrl.currentUser().id, $ctrl.catSelected.id)">Submit</button>
-</div>
+	    <div class = "container">
+		    <h1>Create a Question</h1>
+		    <hr>
+		    <div>
+		    	<div class = "form-group">
+			    	<label>Select Question Category:</label>
+				    <select ng-model="$ctrl.catSelected" ng-options="cat.name for cat in $ctrl.cat" class="form-control">
+			    </select>   
+			    </div>
+			    <div class = "form-group">
+				    <label for="createQuestion">Enter Question:</label>
+				    <input type="text" ng-model="$ctrl.question.question" class="form-control" />
+			    </div>
+			    <div class = "form-group">
+				    <label for="createAnswer">First Answer:</label>
+				    <input type="text" ng-model="$ctrl.question.answers[0].answer" class="form-control" />
+				    <label for="customValCheck">Is this the correct answer:</label>
+				    <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[0].correct" />
+		  		</div>
+		  		<div class = "form-group">
+		  			<label>Second Answer:</label>
+				    <input type="text" ng-model="$ctrl.question.answers[1].answer" class="form-control" />
+		  		    <label for="customValCheck">Is this the correct answer:</label>
+				    <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[1].correct" />
+			    </div>
+			    <div class = "form-group">
+				    <label>Third Answer:</label>
+				    <input type="text" ng-model="$ctrl.question.answers[2].answer" class="form-control" />
+				    <label for="customValCheck">Is this the correct answer:</label>
+				    <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[2].correct" />
+			    </div>
+			    <div class = "form-group">
+			    	<label>Fourth Answer</label>
+				    <input type="text" ng-model="$ctrl.question.answers[3].answer" class="form-control" />
+				    <label for="customValCheck">Is this the correct answer:</label>
+				    <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[3].correct" />
+			    </div>
+			    <button class = "btn btn-lg btn-primary btn-block" ng-click="$ctrl.createQuestion($ctrl.question, $ctrl.currentUser().id, $ctrl.catSelected.id)">Submit</button>
+		    </div>
+	   </div>
 	 `
 
  });

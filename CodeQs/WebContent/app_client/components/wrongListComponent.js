@@ -72,6 +72,7 @@ app.component('wrongListComponent', {
 		    <div class="row">
 		        <div class = "col-xs-4 col-xs-offset-4">
 		            <h1>New Quiz</h1>
+		            <hr>
 		            <p><em>Choose a category to randomly generate a quiz from questions you answered incorrectly:</em></p>
 		            <hr>
 		            <ul>
