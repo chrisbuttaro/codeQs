@@ -67,7 +67,6 @@ app.component('profileComponent', {
 	 	    };
 	
 	 	    vm.getExamsForUser();
-
 	 	    
 	 	    vm.showCategory = function(ex,c) {
 	 	    	var show = false;
@@ -81,7 +80,6 @@ app.component('profileComponent', {
 	 	    	return show;
 	 	    }
 	 	    
-
 	  },
 	    
 	  
@@ -91,6 +89,9 @@ app.component('profileComponent', {
 	    	<h5>Click on a test to review it</h5>
 	  	<div>
 		  	<ul ng-repeat="category in $ctrl.data2" >
+		  		<li ng-show="$ctrl.showCategory($ctrl.exams, category)">
+		  			{{category.name}}
+
 
 		  		<li>
 		  			{{category.name}}  <div ng-show="$ctrl.avgObj[category.name] != null">Average Score: {{$ctrl.avgObj[category.name]}} %</div>
