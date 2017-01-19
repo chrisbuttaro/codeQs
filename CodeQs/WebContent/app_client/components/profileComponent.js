@@ -62,9 +62,9 @@ app.component('profileComponent', {
 	 	    	   }
 	 	    	  console.log(vm.averages[0].catName+" Average Score "+vm.averages[0].averageQscore);
 	 	    	  })
-	 	    	 
 
-	 	    };
+	 	   
+	 	   };
 	
 	 	    vm.getExamsForUser();
 	 	    
@@ -89,12 +89,10 @@ app.component('profileComponent', {
 	    	<h5>Click on a test to review it</h5>
 	  	<div>
 		  	<ul ng-repeat="category in $ctrl.data2" >
-		  		<li ng-show="$ctrl.showCategory($ctrl.exams, category)">
-		  			{{category.name}}
+		  		
 
-
-		  		<li>
-		  			{{category.name}}  <div ng-show="$ctrl.avgObj[category.name] != null">Average Score: {{$ctrl.avgObj[category.name]}} %</div>
+		  		<li ng-show="$ctrl.avgObj[category.name] != null">
+		  			<strong>{{category.name}}: </strong>  Average Score: {{$ctrl.avgObj[category.name]}} %
 
 		  		</li>
 		  	<ul>
