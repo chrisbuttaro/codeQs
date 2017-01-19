@@ -15,13 +15,13 @@ import entities.User;
 public class UserTest {
 
 	private EntityManagerFactory emf;
-    private EntityManager em;
+	private EntityManager em;
 
-    @Before
-    public void setUp() throws Exception {
-        emf = Persistence.createEntityManagerFactory("CodeQJPA");
-        em = emf.createEntityManager();
-    }
+	@Before
+	public void setUp() throws Exception {
+		emf = Persistence.createEntityManagerFactory("CodeQJPA");
+		em = emf.createEntityManager();
+	}
 
 	@Test
 	public void test() {

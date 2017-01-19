@@ -5,12 +5,11 @@ app.component('registrationComponent', {
     var vm = this;
     vm.create=authenticationService.create;
     vm.user={};
-    },
+  },
     
-    template: `
+  template: `
  
-
-	<div class="container">
+	  	  <div class="container">
 			    <form class="form-signin">
 		    	<h1>CodeQs</h1>
 			      <h2 class="form-signin-heading">Who are you?</h2>
@@ -26,37 +25,7 @@ app.component('registrationComponent', {
 			      <button class="btn btn-lg btn-primary btn-block" ng-click="$ctrl.create($ctrl.user); $ctrl.login($ctrl.user)" type="submit">Register</button>
 			      <a href="#!/">Login</a>
 			    </form>
-	    	</div>`
+	    	</div>
+	   `
    
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

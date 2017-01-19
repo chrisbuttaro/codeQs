@@ -17,13 +17,15 @@ import entities.Question;
 public class WrongListDAO {
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	public Set<Question> getWrongListByUser(int uid, int cid) {
-		String query2 = "SELECT q FROM Question q JOIN q.examQuestion eq where eq.exam.user.id =" + uid + " AND q.category.id = " + cid;
+		String query2 = "SELECT q FROM Question q JOIN q.examQuestion eq where eq.exam.user.id =" + uid
+				+ " AND q.category.id = " + cid;
 		List<Question> wrongList = em.createQuery(query2, Question.class).getResultList();
 		Set<Question> wrongListSet = new HashSet<Question>();
 		for (Question question : wrongList) {
-			if (wrongListSet.contains(question) && question.getExamQuestion().get(question.getExamQuestion().size() - 1).isRight() == true ) {
+			if (wrongListSet.contains(question)
+					&& question.getExamQuestion().get(question.getExamQuestion().size() - 1).isRight() == true) {
 				wrongListSet.remove(question);
 			} else if (question.getExamQuestion().get(question.getExamQuestion().size() - 1).isRight() == false) {
 				wrongListSet.add(question);
@@ -31,7 +33,7 @@ public class WrongListDAO {
 		}
 
 		return wrongListSet;
-		
+
 	}
 
 }

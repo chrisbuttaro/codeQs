@@ -20,13 +20,13 @@ public class ResultsController {
 
 	@Autowired
 	private ResultsDAO resultsDAO;
-	
-	@RequestMapping(value="ping", method = RequestMethod.GET)
+
+	@RequestMapping(value = "ping", method = RequestMethod.GET)
 	public String ping() {
 		return "pong";
 	}
-	
-	@RequestMapping(value="exams/{eid}/results", method = RequestMethod.GET)
+
+	@RequestMapping(value = "exams/{eid}/results", method = RequestMethod.GET)
 	public List<ExamQuestion> getResultsByExam(HttpServletRequest req, HttpServletResponse res, @PathVariable int eid) {
 		return resultsDAO.getResultsByTest(eid);
 	}

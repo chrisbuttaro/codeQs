@@ -27,43 +27,37 @@ public class Question {
 	private int id;
 	private String question;
 
-	//@JsonBackReference("question-category")
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
-	
 
-	//@JsonManagedReference("question-user")
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private User user;
 
-	
-	//@JsonManagedReference("question-answer")
 	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "question")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Answer> answers;
-	
+
 	@ManyToMany(mappedBy = "questions")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	private List<Exam> exams;
-	
-	//@JsonManagedReference(value="q_eq")
+
 	@OneToMany(mappedBy = "question")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JsonIgnore
 	private List<ExamQuestion> examQuestion;
-	
+
 	public List<ExamQuestion> getExamQuestion() {
 		return examQuestion;
 	}
-	
+
 	public void setExamQuestion(List<ExamQuestion> examQuestion) {
 		this.examQuestion = examQuestion;
 	}
-	
+
 	public List<Exam> getExams() {
 		return exams;
 	}
@@ -71,7 +65,6 @@ public class Question {
 	public void setExams(List<Exam> exams) {
 		this.exams = exams;
 	}
-
 
 	public void addExam(Exam exam) {
 		if (exams == null) {
@@ -125,6 +118,5 @@ public class Question {
 	public int getId() {
 		return id;
 	}
-	
-	
+
 }

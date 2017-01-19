@@ -5,14 +5,12 @@ app.component('testComponent', {
 controller : function($location, testService){
 	var vm=this; 
 	vm.examId = function() {testService.examId};
-	console.log(vm.examId);
 	
 	vm.go = function () {
   	  $location.path("/results/");
   	};
   	
   	vm.isRight=function(ansCorrect, Qid){
-  		console.log(ansCorrect+" quesitonid "+Qid+" examid"+testService.examId); 
   		testService.updateTestQ(ansCorrect, Qid, testService.examId)
   	};
 },
@@ -20,7 +18,8 @@ controller : function($location, testService){
   template : `
 	<div class="container">
 		<div class="row">
-			<h1>Randomly Generated Test</h1>
+			<h1>{{$ctrl.questions[1].category.name}} Quiz</h1>
+			<hr>
 			<div ng-repeat="question in $ctrl.questions | orderBy:'id'" ng-init="outerIndex = $index">
 				<b>{{$index+1}}. {{question.question}}</b>
 				<div ng-repeat="answer in question.answers">

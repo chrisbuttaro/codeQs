@@ -1,6 +1,6 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,19 +10,18 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import entities.Category;
 import entities.Question;
 
 public class QuestionTest {
 
 	private EntityManagerFactory emf;
-    private EntityManager em;
+	private EntityManager em;
 
-    @Before
-    public void setUp() throws Exception {
-        emf = Persistence.createEntityManagerFactory("CodeQJPA");
-        em = emf.createEntityManager();
-    }
+	@Before
+	public void setUp() throws Exception {
+		emf = Persistence.createEntityManagerFactory("CodeQJPA");
+		em = emf.createEntityManager();
+	}
 
 	@Test
 	public void test() {

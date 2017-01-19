@@ -14,9 +14,7 @@ angular.module("ngCodeQs", ['ngRoute'])
     	template: '<nav-component></nav-component><results-component eid="$resolve.eid"></results-component>',
     	resolve : {
     		eid : function(testService) {
-    			console.log(testService.ExamId);
     			var id = testService.ExamId;
-    			console.log(id);
     			return {'id' : id};
     		}
     	}
@@ -62,22 +60,16 @@ angular.module("ngCodeQs", ['ngRoute'])
 
               return wrongListService.getWrongListByUser(authenticationService.currentUser().id, catId)
               .then(function(resQuestions){
-            	  console.log(resQuestions + '******************************')
                 testService.createExam(authenticationService.currentUser().id, catId)
      		     .then(function(resExam){
      		    	 testService.examId=resExam.data.id; 
      		    	 testService.categoryId = catId;
-     		    	console.log("new exam data "+resExam.data.id);
-     	 	         console.log(resQuestions.data.length)
      	 	         if (resQuestions.data.length === 0) {
      	 	        	 return [];
      	 	         }
      	 	        for (var i=0; i<resQuestions.data.length; i++){
      	 			  testService.createExamQ(resExam.data.id, resQuestions.data[i].id);
-     	 			  console.log(resQuestions.data);
      	 			    	}
-     	 	         console.log('got here');
-     	 	       console.log(resQuestions.data[1].answers);
      		    });
             	  return resQuestions.data;
               });
@@ -85,6 +77,6 @@ angular.module("ngCodeQs", ['ngRoute'])
           }
     })
     .when('/question',{
-    	template: '<nav-component></nav-component><question-component></question-componenet>',
+    	template: '<nav-component></nav-component><question-component></question-component>',
     })
 });

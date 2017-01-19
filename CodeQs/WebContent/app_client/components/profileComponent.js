@@ -19,7 +19,6 @@ app.component('profileComponent', {
 	 	      	  $location.path( path );
 	 	    	};
 	 	    	
-	 	    
 	 	    vm.category = function(){
 	 	    	categoryService.getCategories()
 	 	    	.then(function(response){
@@ -32,10 +31,8 @@ app.component('profileComponent', {
 	 	    vm.getExamsForUser = function() {
 	 	    	profileService.getExamsForUser(vm.currentUser().id)
 	 	    		.then(function(res) {
-	 	    	
 	 	    			vm.exams = res.data;
-	 	    			
-	 	    		})
+	 	    	})
 	 	    }
 	 	    
 	 	   vm.getAverageByCategory=function(catResponse){
@@ -58,12 +55,9 @@ app.component('profileComponent', {
 	 	    		   vm.avgObj[catResponse.data[i].name] = average;
 	 	    		 
 	 	    		   }
-	 	    		   //console.log(vm.averages[i].averageQscore);
 	 	    	   }
 	 	    	  console.log(vm.averages[0].catName+" Average Score "+vm.averages[0].averageQscore);
 	 	    	  })
-
-	 	   
 	 	   };
 	
 	 	    vm.getExamsForUser();
@@ -79,29 +73,36 @@ app.component('profileComponent', {
 	 	    	});
 	 	    	return show;
 	 	    }
-	 	    
 	  },
-	    
 	  
 	    template : `
-	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
-	    	<h3>Tests Taken</h3>
-	    	<h5>Click on a test to review it</h5>
-	  	<div>
-		  	<ul ng-repeat="category in $ctrl.data2" >
-		  		
-
-		  		<li ng-show="$ctrl.avgObj[category.name] != null">
-		  			<strong>{{category.name}}: </strong>  Average Score: {{$ctrl.avgObj[category.name]}} %
-
-		  		</li>
-		  	<ul>
-		  		<li ng-click="$ctrl.go(exam.id)" ng-repeat="exam in $ctrl.exams" ng-if="exam.category.id == category.id"><a href=""> 
-		  			Review Exam {{exam.id}}</a>
-		  		</li>
-		  	</ul>
-	    	</ul>
-	  	</div>
-
-	 `
+		    <div class="container">
+		    <div class="row">
+		    <div class = "col-xs-4 col-xs-offset-4">
+		    <div class="center">
+		    	<h1>Profile</h1>
+		    	<hr>
+		    	<h3>{{$ctrl.currentUser().name}}'s previous quizzes</h3>
+		    	<p><em>Click on a Quiz to review it:</em></p>
+		    </div>
+		    	<hr>
+		  	<div>
+			  	<ul ng-repeat="category in $ctrl.data2" >
+		
+	
+			  		<li ng-show="$ctrl.avgObj[category.name] != null">
+			  			<strong>{{category.name}}: </strong>  Average Score: {{$ctrl.avgObj[category.name]}} %
+	
+			  		</li>
+			  	<ul>
+			  		<li ng-click="$ctrl.go(exam.id)" ng-repeat="exam in $ctrl.exams" ng-if="exam.category.id == category.id"><a href=""> 
+			  			Review Exam {{exam.id}}</a>
+			  		</li>
+			  	</ul>
+		    	</ul>
+		  	</div>
+		  	</div>
+		  </div>
+		  </div>
+		 `
 	  }); 

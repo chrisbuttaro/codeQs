@@ -12,12 +12,6 @@ app.component('resultsComponent', {
 	 	    vm.examId=testService.examId;
 	 	    vm.score;
 	 	    
-	 	    
-	 	    
-	 	   
-	 	   
-	 	    
-	 	    
 	 	    vm.getResultsByExamId = function(id){
 	 	        resultsService.getResultsByExamId(id)
 	 	          .then(function(response){
@@ -32,14 +26,14 @@ app.component('resultsComponent', {
 	 	          });
 	 	    }
 	 	   vm.getResultsByExamId(vm.examId);
-	 
 	   },
-	      
 	  
 	    template : `
 	     <div class="container">
             <h1>Test Results</h1>
-            <h4>Score: {{$ctrl.score}} %</h4>
+            <hr>
+            <h4><em>Score: {{$ctrl.score}} %</em></h4>
+            <hr>
             <div ng-repeat="examQ in $ctrl.examQs | orderBy:'question.id'" ng-init="outerIndex = $index">
                 <b>{{$index+1}}. {{examQ.question.question}}</b>
                 <div ng-if="!examQ.right"></div>
@@ -50,6 +44,5 @@ app.component('resultsComponent', {
                 </div>
             </div>
         </div>
-	    	 
 	 `
 	  }); 

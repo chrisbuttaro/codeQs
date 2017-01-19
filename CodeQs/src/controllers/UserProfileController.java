@@ -17,27 +17,19 @@ import entities.User;
 
 @RestController
 public class UserProfileController {
-    
-    @Autowired
-    private UserProfileDAO userProfileDAO;
 
-  
-    @RequestMapping(value = "user/{uid}")
-    	public User getUser(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid){
-    	
-    	return userProfileDAO.getUser(uid);
-    }
-    
-//    @RequestMapping(path="", method=RequestMethod.GET)
-//    public List<Exam> index(HttpServletRequest req, HttpServletResponse res, @PathVariable int eid ) {
-//            
-//        return userProfileDAO.getUserProfileOfExamsTaken();
-//    }
-    
-    @RequestMapping(path="user/{uid}/exam", method=RequestMethod.GET)
+	@Autowired
+	private UserProfileDAO userProfileDAO;
+
+	@RequestMapping(value = "user/{uid}")
+	public User getUser(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid) {
+
+		return userProfileDAO.getUser(uid);
+	}
+
+	@RequestMapping(path = "user/{uid}/exam", method = RequestMethod.GET)
 	public List<Exam> getAllUserExams(HttpServletRequest req, HttpServletResponse res, @PathVariable int uid) {
 		return userProfileDAO.getAllUserExams(uid);
 	}
-    
- }
-    
+
+}

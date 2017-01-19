@@ -6,12 +6,10 @@ app.factory('wrongListService', function($http) {
 	var vm = this;
 	
 	service.getWrongListByUser = function(uid, cid){
-		console.log(uid);
 		return $http({
 			method : 'GET',
 			url : 'api/user/' + uid + '/category/' + cid + '/wrongList'
 		})
 	};
-	
 	return service;
 });

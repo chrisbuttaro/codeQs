@@ -1,4 +1,4 @@
-package security; 
+package security;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ErrorController {
-  @RequestMapping("/unauthorized")
-  public Map<String,String> unauthorized(HttpServletRequest req, HttpServletResponse res) {
-    res.setStatus(401);
-    Map<String,String> errorJson = new HashMap<>();
-    errorJson.put("error", "your request lacks the proper authorization");
-    return errorJson;
-  }
+	@RequestMapping("/unauthorized")
+	public Map<String, String> unauthorized(HttpServletRequest req, HttpServletResponse res) {
+		res.setStatus(401);
+		Map<String, String> errorJson = new HashMap<>();
+		errorJson.put("error", "your request lacks the proper authorization");
+		return errorJson;
+	}
 }

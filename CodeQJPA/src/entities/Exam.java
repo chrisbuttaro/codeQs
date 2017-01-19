@@ -15,10 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "test")
@@ -26,24 +23,22 @@ public class Exam {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
-	
-	private Integer score; 
-	
+
+	private Integer score;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	//@JsonManagedReference("exam-user")
 	private User user;
-	
+
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "test_question", joinColumns = @JoinColumn(name = "test_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private List<Question> questions;
-	
+
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy="exam")
-	private List <ExamQuestion> examQuestion;
-	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "exam")
+	private List<ExamQuestion> examQuestion;
+
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	private Category category;
@@ -58,7 +53,7 @@ public class Exam {
 
 	public Exam() {
 	}
-	
+
 	public List<ExamQuestion> getExamQuestion() {
 		return examQuestion;
 	}
@@ -111,9 +106,5 @@ public class Exam {
 	public int getId() {
 		return id;
 	}
-
-	
-	
-	
 
 }

@@ -8,9 +8,9 @@ import io.jsonwebtoken.impl.crypto.MacProvider;
 
 @Component
 public class SecretKeyGenerator {
-  private final Key SECRET_KEY = MacProvider.generateKey();
+	private final Key SECRET_KEY = MacProvider.generateKey();
 
-  public Key getSecretKey() {
-    return SECRET_KEY;
-  }
+	public Key getSecretKey() {
+		return SECRET_KEY;
+	}
 }

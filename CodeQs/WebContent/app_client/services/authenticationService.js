@@ -20,13 +20,12 @@ angular.module('ngCodeQs')
          headers:{
              "Content-type": "application/json"
          }
-         })
-             .then(function(response){
-               service.saveToken(response.data.jwt);
-               $location.path('/category')
-               
-             })
-   };
+     })
+         .then(function(response){
+	           service.saveToken(response.data.jwt);
+	           $location.path('/category')
+          })
+    };
    
    service.create = function(user) {
        console.log('in create');
@@ -37,13 +36,11 @@ angular.module('ngCodeQs')
            headers:{
                "Content-type": "application/json"
            }
+       })
+           .then(function(response){
+             service.saveToken(response.data.jwt);
+             $location.path('/category')
            })
-               .then(function(response){
-                   console.log(response)
-                 service.saveToken(response.data.jwt);
-                 $location.path('/category')
-                 
-               })
      };
 
    // Remove JWT from local storage
@@ -55,15 +52,15 @@ angular.module('ngCodeQs')
    service.isLoggedIn = function() {
      var token = service.getToken();
 
-     if (token) {
+      if (token) {
        // $window.atob decodes a the encoded string
        var payload = JSON.parse($window.atob(token.split('.')[1]));
 
        return payload.exp > Date.now() / 1000;
 
-     } else {
+      } else {
        return false;
-     }
+      }
    };
 
    // Get current user from JWT
@@ -76,12 +73,8 @@ angular.module('ngCodeQs')
        return {
          name : payload.username,
          id   : payload.user_id
-       
        };
-     
      }
    };
-
    return service;
-   
 })
