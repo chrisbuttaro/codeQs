@@ -20,7 +20,7 @@ public class Answer {
 	
 	//@JsonBackReference("question-answer")
 	@ManyToOne
-	@JoinColumn(name="question_id")
+	@JoinColumn(name="question_id", referencedColumnName="id")
 	@JsonIgnore
 	private Question question;
 	

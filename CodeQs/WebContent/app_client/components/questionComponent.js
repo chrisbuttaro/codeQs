@@ -7,7 +7,9 @@ app.component('questionComponent', {
 	      vm.currentUser=authenticationService.currentUser;
 	     
 	    
-	 	    vm.question = {};
+	 	    vm.question= {
+	 	    		"answers": []
+	 	    };
 	 	    vm.answer =[];
 	 	    vm.cat=[];
 	 	    vm.catSelected;
@@ -17,6 +19,7 @@ app.component('questionComponent', {
 	 	          .then(function(response){
 	 	            vm.cat = response.data;
 	 	    	    console.log(response.data);
+	 	    	    console.log(vm.currentUser.id);
 	 	          });
 	 	    }
 	 	    vm.category();
@@ -40,31 +43,44 @@ app.component('questionComponent', {
 	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
 <h3>Would you like to create a question</h3>
 <div>
-   <select>
-      <option ng-model="$ctrl.catSelected" ng-repeat="cat in $ctrl.cat">{{cat.name}}</option>
-   </select>
+   <!-- <select
+     ng-model="$ctrl.catSelected" [ng-repeat="cat in $ctrl.cat"]>{{cat.name}}</option>
+   </select> -->
+<select ng-model="$ctrl.catSelected" ng-options="cat.name for cat in $ctrl.cat">
+</select>   
+
    {{$ctrl.catSelected}}
+   
+   
+   
+
   
          <label for="createQuestion">Enter Question:</label>
          <input type="text" ng-model="$ctrl.question.question" />
          <label for="createAnswer">First Answer:</label>
-         <input type="text" ng-model="$ctrl.question.answers[0]" />
+         <input type="text" ng-model="$ctrl.question.answers[0].answer" />
+         <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[0].correct" />
          <label for="customValCheck">Is this the correct answer:</label>
-         <input type="text" ng-model="$ctrl.question.answers[1]" />
+         <input type="text" ng-model="$ctrl.question.answers[1].answer" />
+         <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[1].correct" />
          <label for="customValCheck">Is this the correct answer:</label>
-         <input type="text" ng-model="$ctrl.question.answers[2]" />
+         <input type="text" ng-model="$ctrl.question.answers[2].answer" />
+         <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[2].correct" />
          <label for="customValCheck">Is this the correct answer:</label>
-         <input type="text" ng-model="$ctrl.question.answers[3]" />
+         <input type="text" ng-model="$ctrl.question.answers[3].answer" />
+         <input id="basicCheck" type="checkbox" ng-model="$ctrl.question.answers[3].correct" />
          <label for="customValCheck">Is this the correct answer:</label>
          <p>
-      	{{$ctrl.question.question}}
+        <!--	{{$ctrl.question.question}}
       	{{$ctrl.question.answers[0]}}
       	{{$ctrl.question.answers[1]}}
       	{{$ctrl.question.answers[2]}}
       	{{$ctrl.question.answers[3]}}
-      	{{$ctrl.question.answers[0].correct}}
+      	{{$ctrl.question.answers[0].correct}}-->
+      	{{$ctrl.question}} 
 		</p>
-   <button ng-click="$ctrl.createQuestion($ctrl.question, $ctrl.currentUser.id, $ctrl.catSelected.id">Submit</button>
+		$ctrl.question
+  <button ng-click="$ctrl.createQuestion($ctrl.question, $ctrl.currentUser().id, $ctrl.catSelected.id)">Submit</button>
 </div>
 	 `
 

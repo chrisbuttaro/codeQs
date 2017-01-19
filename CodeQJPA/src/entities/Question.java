@@ -3,6 +3,7 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,9 +17,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "question")
@@ -42,7 +41,7 @@ public class Question {
 
 	
 	//@JsonManagedReference("question-answer")
-	@OneToMany(mappedBy = "question")
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "question")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Answer> answers;
 	

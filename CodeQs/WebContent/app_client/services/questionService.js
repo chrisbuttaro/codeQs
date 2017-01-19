@@ -9,7 +9,7 @@ app.factory('questionService', function($http) {
 service.createQuestion=function(quest, uid, cid){
 		return $http({
 		method : "POST",
-		data : {question : quest},
+		data : quest,
 		url : 'api/user/'+uid+'/category/'+cid+'/question',
 		headers : {
 		    'Content-Type' : 'application/json'
