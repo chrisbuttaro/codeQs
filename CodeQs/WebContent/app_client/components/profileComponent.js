@@ -84,12 +84,18 @@ app.component('profileComponent', {
 	    
 	  
 	    template : `
-	      <h2>Hello {{$ctrl.currentUser().name}}</h2>
-	    	<h3>Tests Taken</h3>
-	    	<h5>Click on a test to review it</h5>
+	    <div class="container">
+	    <div class="row">
+	    <div class = "col-xs-4 col-xs-offset-4">
+	    <div class="center">
+	    	<h1>Profile</h1>
+	    	<h3>{{$ctrl.currentUser().name}}'s previous quizzes</h3>
+	    	<p><em>Click on a Quiz to review it:</em></p>
+	    </div>
+	    	<hr>
 	  	<div>
 		  	<ul ng-repeat="category in $ctrl.data2" >
-		  		
+	
 
 		  		<li ng-show="$ctrl.avgObj[category.name] != null">
 		  			<strong>{{category.name}}: </strong>  Average Score: {{$ctrl.avgObj[category.name]}} %
@@ -102,6 +108,9 @@ app.component('profileComponent', {
 		  	</ul>
 	    	</ul>
 	  	</div>
+	  	</div>
+	  </div>
+	  </div>
 
 	 `
 	  }); 

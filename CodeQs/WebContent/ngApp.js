@@ -85,6 +85,6 @@ angular.module("ngCodeQs", ['ngRoute'])
           }
     })
     .when('/question',{
-    	template: '<nav-component></nav-component><question-component></question-componenet>',
+    	template: '<nav-component></nav-component><question-component></question-component>',
     })
 });

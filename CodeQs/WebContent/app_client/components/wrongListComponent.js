@@ -72,7 +72,8 @@ app.component('wrongListComponent', {
 		    <div class="row">
 		        <div class = "col-xs-4 col-xs-offset-4">
 		            <h1>New Quiz</h1>
-		            <p>Choose a category:</p>
+		            <p><em>Choose a category to randomly generate a quiz from questions you answered incorrectly:</em></p>
+		            <hr>
 		            <ul>
 		                <li ng-repeat="c in $ctrl.categories track by $index"><a href="#!/wrongList/{{c.id}}">{{c.name}}</a></li>
 		            </ul>

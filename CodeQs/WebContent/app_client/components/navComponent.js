@@ -31,7 +31,7 @@ app.component('navComponent', {
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#!/profile">Profile <span class="sr-only">(current)</span></a></li>
+        <li><a href="#!/profile">Profile <span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tests <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -39,7 +39,7 @@ app.component('navComponent', {
             <li><a href="#!/wrongList">Wrong Answer Quiz</a></li>
           </ul>
         </li>
-		<li class="active"><a href="#!/question">Add A Question <span class="sr-only">(current)</span></a></li>
+		<li><a href="#!/question">Add A Question <span class="sr-only">(current)</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a>Logged in as: {{$ctrl.currentUser().name}}</a></li>
