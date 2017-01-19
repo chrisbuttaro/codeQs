@@ -27,6 +27,9 @@ public class Exam {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	
+	private Integer score; 
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	//@JsonManagedReference("exam-user")
@@ -93,12 +96,24 @@ public class Exam {
 		return user;
 	}
 
+	public Integer getScore() {
+		return score;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
 
 	public int getId() {
 		return id;
-	};
+	}
+
+	
+	
+	
 
 }

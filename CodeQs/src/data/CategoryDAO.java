@@ -50,4 +50,5 @@ public class CategoryDAO {
 		em.remove(category);
 		return category;
 	}
+	
 }
