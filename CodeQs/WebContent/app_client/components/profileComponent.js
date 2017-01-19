@@ -1,7 +1,7 @@
 var app = angular.module("ngCodeQs");
 
 app.component('profileComponent', {
-	  controller : function(profileService, authenticationService, categoryService, testService, $location) {
+	  controller : function(profileService, authenticationService, categoryService, testService, $location, $filter) {
 	      var vm = this;
 	    
 	      vm.currentUser=authenticationService.currentUser;
@@ -33,7 +33,8 @@ app.component('profileComponent', {
 	 	    	profileService.getExamsForUser(vm.currentUser().id)
 	 	    		.then(function(res) {
 	 	    	
-	 	    			vm.exam = res.data;
+	 	    			vm.exams = res.data;
+	 	    			
 	 	    		})
 	 	    }
 	 	    
@@ -66,8 +67,21 @@ app.component('profileComponent', {
 	 	    };
 	
 	 	    vm.getExamsForUser();
-	 	     
-	   
+
+	 	    
+	 	    vm.showCategory = function(ex,c) {
+	 	    	var show = false;
+	 	    	console.log(ex)
+	 	    	ex.forEach(function(e) {
+	 	    		console.log(e)
+	 	    		if (e.category.id === c.id) {
+	 	    			show = true;
+	 	    		}
+	 	    	});
+	 	    	return show;
+	 	    }
+	 	    
+
 	  },
 	    
 	  
@@ -77,11 +91,13 @@ app.component('profileComponent', {
 	    	<h5>Click on a test to review it</h5>
 	  	<div>
 		  	<ul ng-repeat="category in $ctrl.data2" >
+
 		  		<li>
 		  			{{category.name}}  <div ng-show="$ctrl.avgObj[category.name] != null">Average Score: {{$ctrl.avgObj[category.name]}} %</div>
+
 		  		</li>
 		  	<ul>
-		  		<li ng-click="$ctrl.go(exam.id)" ng-repeat="exam in $ctrl.exam" ng-if="exam.category.id == category.id"><a href=""> 
+		  		<li ng-click="$ctrl.go(exam.id)" ng-repeat="exam in $ctrl.exams" ng-if="exam.category.id == category.id"><a href=""> 
 		  			Review Exam {{exam.id}}</a>
 		  		</li>
 		  	</ul>

@@ -9,7 +9,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import entities.Answer;
+import entities.Category;
 import entities.Question;
+import entities.User;
 
 @Transactional
 @Repository
@@ -30,8 +32,14 @@ public class QuestionDAO {
 		return questionUser;
 	}
 
-	public Question create(Question newQuestion) {
-
+	public Question create(Question newQuestion, int cid, int uid) {
+		Category category = em.find(Category.class, cid);
+		User user = em.find(User.class, uid);
+		newQuestion.setCategory(category);
+		newQuestion.setQuestion(newQuestion.getQuestion());
+		newQuestion.setUser(user);
+		newQuestion.setAnswers(newQuestion.getAnswers());
+		
 		em.persist(newQuestion);
 		em.flush();
 		
@@ -60,7 +68,11 @@ public class QuestionDAO {
 		return em.createQuery(query, Question.class).setMaxResults(10).getResultList();
 	}
 
-	public Answer createAnswer(Answer newAnswer) {
+	public Answer createAnswer(Answer newAnswer, Question question, String answer, Boolean isCorrect) {
+		newAnswer.setQuestion(question);
+		newAnswer.setAnswer(answer);
+		newAnswer.setCorrect(isCorrect);
+		
 		em.persist(newAnswer);
 		em.flush();
 		

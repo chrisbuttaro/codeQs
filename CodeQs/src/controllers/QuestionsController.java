@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import data.QuestionDAO;
 import entities.Answer;
+import entities.Category;
 import entities.Question;
+import entities.User;
 
 @RestController
 public class QuestionsController {
@@ -38,16 +40,16 @@ public class QuestionsController {
 //        return questionDAO.show(id);
 //    }
 //
-    @RequestMapping(path = "question", method = RequestMethod.POST)
-    public Question create(HttpServletRequest req, HttpServletResponse res, @RequestBody Question t) {
+    @RequestMapping(path = "user/{uid}/category/{cid}/question", method = RequestMethod.POST)
+    public Question create(HttpServletRequest req, HttpServletResponse res, @RequestBody Question newQuestion, @PathVariable int cid, @PathVariable int uid) {
         
-        return questionDAO.create(t);
+        return questionDAO.create(newQuestion, cid, uid);
     }
     
     @RequestMapping(path = "question/answer", method = RequestMethod.POST)
-    public Answer createAnswer(HttpServletRequest req, HttpServletResponse res, @RequestBody Answer a) {
+    public Answer createAnswer(HttpServletRequest req, HttpServletResponse res, @RequestBody Answer newAnswer, Question question, String answer, Boolean isCorrect) {
         
-        return questionDAO.createAnswer(a);
+        return questionDAO.createAnswer(newAnswer, question, answer, isCorrect);
     }
     
 //
