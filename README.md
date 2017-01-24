@@ -4,6 +4,6 @@ For our final project at Skill Distillery we were divided into teams and given e
 
 Technologies Used:
 
-Frontend – AngularJS, HTML5, CSS3, & Bootstrap
+  Frontend – AngularJS, HTML5, CSS3, & Bootstrap
 
-Backend –  Spring MVC, Spring REST, JPA, JDBC, SQL
+  Backend –  Spring MVC, Spring REST, JPA, JDBC, SQL
